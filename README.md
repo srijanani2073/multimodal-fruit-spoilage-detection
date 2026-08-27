@@ -2,8 +2,6 @@
 
 A trimodal deep learning framework for produce-spoilage detection using **sRGB images, thermal/IR images, and methane gas-sensor data**. The system performs spoilage-stage classification and investigates days-until-spoilage regression through heterogeneous sensory fusion and temporal modelling.
 
-> **M.Tech Thesis Project** — Multimodal Fruit and Vegetable Degradation Modelling via Heterogeneous Sensory Fusion
-
 ## Overview
 
 Post-harvest produce degradation is a multimodal process: visible appearance, thermal characteristics, and gas emissions provide complementary information about the underlying spoilage process. This project develops a multimodal learning pipeline that combines these signals rather than relying on a single sensor modality.
@@ -102,11 +100,12 @@ The current codebase is organized around the following notebooks:
 ```text
 .
 ├── 01_data_pipeline.ipynb
+├── 02_dataset_analysis.ipynb
 ├── 03_encoders_baselines.ipynb
 ├── 04_fusion_model.ipynb
 ├── 05_ablation_study.ipynb
 ├── README.md
-├── requirements.txt          # recommended to add/pin before final release
+├── requirements.txt        
 └── data/
     └── ...                   # dataset files, not included
 ```
@@ -263,24 +262,6 @@ The ablation study compares seven configurations across six seeds, including:
 
 The ablation results show that component rankings can change between single-seed averages and multi-seed ensembles. Given the small dataset and six seeds per configuration, ensemble-level ablation results should therefore be interpreted cautiously.
 
-## Current Status
-
-| Component | Status |
-|---|---|
-| Data pipeline | Complete |
-| Unimodal baselines | Complete |
-| Full fusion model | Complete |
-| Ablation study | Complete |
-| Parameter/FLOPs/latency profiling | Partially available |
-| DINOv2 comparison | Pending |
-| Missing-modality robustness sweeps | Pending |
-| Leave-one-fruit-out evaluation | Pending |
-| Bootstrap confidence intervals | Pending |
-| Additional cross-validation | Pending |
-| Grad-CAM analysis | Pending |
-| SHAP gas-feature analysis | Pending |
-| Robust shelf-life regression | Unresolved |
-
 ## Limitations
 
 The main limitations of the current work are:
@@ -293,73 +274,3 @@ The main limitations of the current work are:
 6. **Generalization has not yet been established:** leave-one-fruit-out evaluation is still pending.
 7. **Edge benchmarking is incomplete:** the planned head-to-head DINOv2 comparison has not yet been run.
 8. **Interpretability is pending:** Grad-CAM and SHAP analyses have not yet been completed.
-
-These limitations are intentionally documented rather than hidden because they materially affect how the reported results should be interpreted.
-
-## Future Work
-
-Planned extensions include:
-
-- Increase ablation seed count for more stable component rankings.
-- Complete the DINOv2 accuracy-versus-deployability comparison.
-- Run synthetic missing-modality experiments across 0–50% missingness.
-- Perform leave-one-fruit-out evaluation.
-- Add trajectory-level bootstrap confidence intervals.
-- Add additional cross-validation suited to the small trajectory count.
-- Investigate why shelf-life regression remains near baseline.
-- Run Grad-CAM for visual encoders.
-- Run SHAP analysis for gas features.
-- Improve reproducibility through pinned dependencies and experiment configuration files.
-
-## Reproducibility
-
-The project uses fixed random seeds for multi-run experiments and performs threshold calibration separately from the held-out test evaluation.
-
-Before publishing the repository as a reproducible research artifact, it is recommended to add:
-
-```text
-requirements.txt
-environment.yml
-configs/
-checkpoints/README.md
-results/
-```
-
-Exact dependency versions should be pinned based on the environment used for the reported experiments rather than guessed retrospectively.
-
-## Data and Privacy
-
-The repository does not contain the TR-6 dataset by default. Do not commit raw sensor data, private experimental records, or large model checkpoints unless their redistribution is permitted.
-
-A recommended local layout is:
-
-```text
-data/
-├── rgb/
-├── ir/
-├── gas/
-└── manifests/
-```
-
-Add dataset directories to `.gitignore` when the dataset cannot be redistributed.
-
-## Citation
-
-If this repository is used in academic work, cite the associated thesis/project report once the final bibliographic information is available.
-
-```text
-Sri Janani S.
-"Multimodal Fruit and Vegetable Degradation Modelling via
-Heterogeneous Sensory Fusion:
-A Trimodal (sRGB + Thermal + Gas) Deep Learning Framework
-for Spoilage-Stage Classification and Shelf-Life Regression."
-M.Tech Thesis, Amrita Vishwa Vidyapeetham.
-```
-
-## License
-
-A repository license has not yet been specified. Add an appropriate `LICENSE` file before distributing the code publicly.
-
----
-
-**Project focus:** multimodal sensing · food-quality monitoring · deep learning · sensor fusion · temporal modelling · spoilage detection · shelf-life prediction
