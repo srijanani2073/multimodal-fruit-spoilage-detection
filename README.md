@@ -105,9 +105,21 @@ The current codebase is organized around the following notebooks:
 ├── 04_fusion_model.ipynb
 ├── 05_ablation_study.ipynb
 ├── README.md
-├── requirements.txt        
-└── data/
-    └── ...                   # dataset files, not included
+├── requirements.txt
+├── Manifest
+    ├── manifests
+        ├── banana_manifest.csv
+        ├── carrot_manifest.csv
+        ├── guava_manifest.csv
+        ├── indian_gooseberry_manifest.csv
+        ├── mango_manifest.csv
+        ├── tomato_manifest.csv
+        ├── master_manifest.csv
+    ├── GasNorm
+        ├── gas_norm_stats.json
+        ├── ir_scalar_norm_stats.json       
+└── TR6/
+    └── ...                   # dataset files, not included. Download from https://figshare.com/articles/dataset/TriModal_Ripeness_6/30783827?file=60094544 
 ```
 
 The report describes the implemented workflow as:
