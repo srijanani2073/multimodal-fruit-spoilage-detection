@@ -119,7 +119,8 @@ The current codebase is organized around the following notebooks:
         ├── gas_norm_stats.json
         ├── ir_scalar_norm_stats.json       
 └── TR6/
-    └── ...                   # dataset files, not included. Download from https://figshare.com/articles/dataset/TriModal_Ripeness_6/30783827?file=60094544 
+    └── ...
+    # dataset files, not included. Download from https://figshare.com/articles/dataset/TriModal_Ripeness_6/30783827?file=60094544 
 ```
 
 The report describes the implemented workflow as:
