@@ -255,7 +255,7 @@ Held-out test results:
 
 | Model | Test F1 | Test AUC |
 |---|---:|---:|
-| Trimodal fusion ensemble | **0.7143** | **0.7000** |
+| Trimodal fusion ensemble | **0.8000** | **0.7333** |
 
 The final test evaluation contains only 18 day-level entries, so these numbers should be interpreted cautiously.
 
