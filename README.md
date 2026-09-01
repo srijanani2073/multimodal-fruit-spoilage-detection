@@ -230,9 +230,9 @@ The classification threshold is calibrated without using validation/test predict
 
 | Modality | Encoder | F1 | AUC | MAE |
 |---|---|---:|---:|---:|
-| sRGB | ConvNeXt-Tiny + CBAM | 0.8000 | 0.7222 | 2.75 days |
-| IR | EfficientNet-B0 + CBAM | 0.7500 | 0.6944 | 2.75 days |
-| Gas | GRU-D | 0.6667 | 0.3333 | 2.75 days |
+| sRGB | ConvNeXt-Tiny + CBAM | 0.7500 | 0.6944 | 2.16 days |
+| IR | EfficientNet-B0 + CBAM | 0.7500 | 0.6111 | 2.17 days |
+| Gas | GRU-D | 0.7692 | 0.5833 | 2.15 days |
 
 These are single-seed validation results and are baseline reference points, not final test results.
 
