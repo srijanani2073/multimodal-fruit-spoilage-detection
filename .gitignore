@@ -1,10 +1,11 @@
 # Project-specific
 ntbk314/
-runs/
 old/
 Code.zip
 .DS_Store
-Code/09_explainability.ipynb
+runs/**/model_state.pt
+runs/**/*.pt
+runs/**/*.pth
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

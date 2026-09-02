@@ -1,0 +1,7 @@
+config,key,observed_delta_f1_vs_full_model,ci_lower,ci_upper,p_value_approx,distinguishable_from_full_model,n_valid_resamples
+Ablation 4 (mean-impute),ablation_4_mean_impute_not_grud,0.1091,-0.1905,0.4545,0.5138,False,10000
+Ablation 1 (no CBAM),ablation_1_no_cbam,0.0571,-0.1382,0.2735,0.766,False,10000
+Ablation 3 (LSTM),ablation_3_lstm_not_transformer,0.0571,-0.1382,0.2735,0.766,False,10000
+Baseline B (late fusion),baseline_b_late,0.0,-0.1579,0.1558,1.0,False,10000
+Ablation 2 (no cross-attn),ablation_2_no_cross_attn,-0.1333,-0.3209,0.0,0.0636,False,10000
+Baseline A (early fusion),baseline_a_early,-0.1333,-0.3209,0.0,0.0636,False,10000
