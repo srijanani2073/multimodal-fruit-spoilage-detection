@@ -1,0 +1,7 @@
+config,observed_delta_ensemble,significant_ensemble,observed_delta_seed_level,significant_seed_level,direction_flip,significance_flip,any_inversion
+Ablation 1 (no CBAM),-0.05,False,0.0092,False,True,False,True
+Ablation 3 (LSTM),0.0571,False,-0.0818,True,True,True,True
+Baseline A (early fusion),-0.0941,False,-0.0737,True,False,True,True
+Baseline B (late fusion),-0.1333,False,-0.1111,True,False,True,True
+Ablation 2 (no cross-attn),-0.1333,False,-0.0461,False,False,False,False
+Ablation 4 (mean-impute),0.1091,False,0.0021,False,False,False,False

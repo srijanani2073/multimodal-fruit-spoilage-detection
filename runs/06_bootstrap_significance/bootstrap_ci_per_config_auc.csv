@@ -2,7 +2,7 @@ config,key,n_seeds,observed_auc,ci_lower,ci_upper,n_valid_resamples
 Ablation 2 (no cross-attn),ablation_2_no_cross_attn,10,0.9722,0.85,1.0,9994
 Ablation 4 (mean-impute),ablation_4_mean_impute_not_grud,10,0.9722,0.8333,1.0,9994
 Full Model,full_model,10,0.9444,0.75,1.0,9994
-Ablation 1 (no CBAM),ablation_1_no_cbam,10,0.8056,0.4688,1.0,9994
+Ablation 1 (no CBAM),ablation_1_no_cbam,10,0.8056,0.4716,1.0,9994
 Ablation 3 (LSTM),ablation_3_lstm_not_transformer,10,0.6667,0.25,1.0,9994
+Baseline B (late fusion),baseline_b_late,10,0.6667,0.25,1.0,9994
 Baseline A (early fusion),baseline_a_early,10,0.6111,0.2,1.0,9994
-Baseline B (late fusion),baseline_b_late,10,0.6111,0.2,1.0,9994

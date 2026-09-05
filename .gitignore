@@ -6,6 +6,7 @@ Code.zip
 runs/**/model_state.pt
 runs/**/*.pt
 runs/**/*.pth
+Code/regression_diagnosis.ipynb
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

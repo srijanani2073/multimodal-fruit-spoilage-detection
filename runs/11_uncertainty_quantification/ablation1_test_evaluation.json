@@ -1,0 +1,9 @@
+{
+  "config": "ablation_1_no_cbam",
+  "n_seeds": 10,
+  "threshold": 0.705,
+  "test_f1": 0.0,
+  "test_auc": 0.7333,
+  "n_test_trajectories": 11,
+  "n_failures": 0
+}

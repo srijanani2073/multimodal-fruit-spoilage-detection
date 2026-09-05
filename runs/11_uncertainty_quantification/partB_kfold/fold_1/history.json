@@ -1,0 +1,242 @@
+[
+  {
+    "epoch": 1,
+    "train_f1": 0.3158,
+    "val_f1": 0.6667,
+    "val_auc": 0.0,
+    "val_mae": 1.0154,
+    "threshold": 0.55
+  },
+  {
+    "epoch": 2,
+    "train_f1": 0.6667,
+    "val_f1": 0.0,
+    "val_auc": 0.0,
+    "val_mae": 1.1308,
+    "threshold": 0.58
+  },
+  {
+    "epoch": 3,
+    "train_f1": 0.4762,
+    "val_f1": 0.6667,
+    "val_auc": 0.0,
+    "val_mae": 1.0096,
+    "threshold": 0.54
+  },
+  {
+    "epoch": 4,
+    "train_f1": 0.5833,
+    "val_f1": 0.6667,
+    "val_auc": 0.0,
+    "val_mae": 1.1088,
+    "threshold": 0.47
+  },
+  {
+    "epoch": 5,
+    "train_f1": 0.375,
+    "val_f1": 0.6667,
+    "val_auc": 0.0,
+    "val_mae": 0.9361,
+    "threshold": 0.53
+  },
+  {
+    "epoch": 6,
+    "train_f1": 0.5,
+    "val_f1": 0.0,
+    "val_auc": 0.0,
+    "val_mae": 1.1481,
+    "threshold": 0.5
+  },
+  {
+    "epoch": 7,
+    "train_f1": 0.7407,
+    "val_f1": 0.6667,
+    "val_auc": 0.0,
+    "val_mae": 0.9851,
+    "threshold": 0.1
+  },
+  {
+    "epoch": 8,
+    "train_f1": 0.6957,
+    "val_f1": 0.0,
+    "val_auc": 0.0,
+    "val_mae": 1.0583,
+    "threshold": 0.66
+  },
+  {
+    "epoch": 9,
+    "train_f1": 0.4545,
+    "val_f1": 0.6667,
+    "val_auc": 0.0,
+    "val_mae": 1.1849,
+    "threshold": 0.58
+  },
+  {
+    "epoch": 10,
+    "train_f1": 0.7407,
+    "val_f1": 0.0,
+    "val_auc": 0.0,
+    "val_mae": 1.1427,
+    "threshold": 0.62
+  },
+  {
+    "epoch": 11,
+    "train_f1": 0.8485,
+    "val_f1": 0.0,
+    "val_auc": 0.0,
+    "val_mae": 1.0551,
+    "threshold": 0.65
+  },
+  {
+    "epoch": 12,
+    "train_f1": 0.5714,
+    "val_f1": 0.0,
+    "val_auc": 0.0,
+    "val_mae": 1.1197,
+    "threshold": 0.68
+  },
+  {
+    "epoch": 13,
+    "train_f1": 0.6957,
+    "val_f1": 0.0,
+    "val_auc": 0.0,
+    "val_mae": 1.1617,
+    "threshold": 0.68
+  },
+  {
+    "epoch": 14,
+    "train_f1": 0.56,
+    "val_f1": 0.0,
+    "val_auc": 0.0,
+    "val_mae": 1.019,
+    "threshold": 0.66
+  },
+  {
+    "epoch": 15,
+    "train_f1": 0.8,
+    "val_f1": 0.6667,
+    "val_auc": 0.0,
+    "val_mae": 1.0812,
+    "threshold": 0.68
+  },
+  {
+    "epoch": 16,
+    "train_f1": 0.7333,
+    "val_f1": 0.0,
+    "val_auc": 0.0,
+    "val_mae": 1.1534,
+    "threshold": 0.66
+  },
+  {
+    "epoch": 17,
+    "train_f1": 0.381,
+    "val_f1": 0.0,
+    "val_auc": 0.0,
+    "val_mae": 1.0945,
+    "threshold": 0.7
+  },
+  {
+    "epoch": 18,
+    "train_f1": 0.8333,
+    "val_f1": 0.0,
+    "val_auc": 0.0,
+    "val_mae": 1.1846,
+    "threshold": 0.69
+  },
+  {
+    "epoch": 19,
+    "train_f1": 0.7143,
+    "val_f1": 0.0,
+    "val_auc": 0.0,
+    "val_mae": 1.2076,
+    "threshold": 0.69
+  },
+  {
+    "epoch": 20,
+    "train_f1": 0.7692,
+    "val_f1": 0.0,
+    "val_auc": 0.0,
+    "val_mae": 1.1984,
+    "threshold": 0.69
+  },
+  {
+    "epoch": 21,
+    "train_f1": 0.5385,
+    "val_f1": 0.0,
+    "val_auc": 0.0,
+    "val_mae": 1.239,
+    "threshold": 0.7
+  },
+  {
+    "epoch": 22,
+    "train_f1": 0.7143,
+    "val_f1": 0.0,
+    "val_auc": 0.0,
+    "val_mae": 1.1882,
+    "threshold": 0.71
+  },
+  {
+    "epoch": 23,
+    "train_f1": 0.8125,
+    "val_f1": 0.0,
+    "val_auc": 0.0,
+    "val_mae": 1.1492,
+    "threshold": 0.68
+  },
+  {
+    "epoch": 24,
+    "train_f1": 0.6667,
+    "val_f1": 0.0,
+    "val_auc": 0.0,
+    "val_mae": 1.1952,
+    "threshold": 0.71
+  },
+  {
+    "epoch": 25,
+    "train_f1": 0.6667,
+    "val_f1": 0.6667,
+    "val_auc": 0.0,
+    "val_mae": 1.1917,
+    "threshold": 0.65
+  },
+  {
+    "epoch": 26,
+    "train_f1": 0.7143,
+    "val_f1": 0.0,
+    "val_auc": 0.0,
+    "val_mae": 1.1944,
+    "threshold": 0.71
+  },
+  {
+    "epoch": 27,
+    "train_f1": 0.6087,
+    "val_f1": 0.0,
+    "val_auc": 0.0,
+    "val_mae": 1.117,
+    "threshold": 0.74
+  },
+  {
+    "epoch": 28,
+    "train_f1": 0.56,
+    "val_f1": 0.0,
+    "val_auc": 0.0,
+    "val_mae": 1.1519,
+    "threshold": 0.67
+  },
+  {
+    "epoch": 29,
+    "train_f1": 0.8148,
+    "val_f1": 0.0,
+    "val_auc": 0.0,
+    "val_mae": 1.1325,
+    "threshold": 0.69
+  },
+  {
+    "epoch": 30,
+    "train_f1": 0.7586,
+    "val_f1": 0.0,
+    "val_auc": 0.0,
+    "val_mae": 1.2662,
+    "threshold": 0.68
+  }
+]
