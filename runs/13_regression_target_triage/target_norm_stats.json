@@ -1,0 +1,60 @@
+{
+  "zscore": {
+    "Banana": {
+      "mean": 2.0,
+      "std": 2.0,
+      "n": 2
+    },
+    "Carrot": {
+      "mean": 1.5,
+      "std": 1.5,
+      "n": 2
+    },
+    "Guava": {
+      "mean": 2.0,
+      "std": 2.0,
+      "n": 2
+    },
+    "Mango": {
+      "mean": 3.0,
+      "std": 3.0,
+      "n": 2
+    },
+    "Indian_Gooseberry": {
+      "mean": 3.5,
+      "std": 3.5,
+      "n": 2
+    },
+    "Tomato": {
+      "mean": 8.5,
+      "std": 8.5,
+      "n": 2
+    }
+  },
+  "fraction": {
+    "Banana": {
+      "max": 4.0,
+      "n": 2
+    },
+    "Carrot": {
+      "max": 3.0,
+      "n": 2
+    },
+    "Guava": {
+      "max": 4.0,
+      "n": 2
+    },
+    "Mango": {
+      "max": 6.0,
+      "n": 2
+    },
+    "Indian_Gooseberry": {
+      "max": 7.0,
+      "n": 2
+    },
+    "Tomato": {
+      "max": 17.0,
+      "n": 2
+    }
+  }
+}

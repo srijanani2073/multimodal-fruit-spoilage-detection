@@ -1,0 +1,30 @@
+{
+  "full_model_val_f1_known": 0.8,
+  "variant_z_zscore": {
+    "n_seeds": 5,
+    "threshold": 0.58,
+    "val_f1": 0.6667,
+    "val_auc": 0.75,
+    "val_mae": 2.1311,
+    "val_rmse": 2.9553,
+    "val_r2": -0.1955
+  },
+  "variant_f_fraction": {
+    "n_seeds": 5,
+    "threshold": 0.62,
+    "val_f1": 0.75,
+    "val_auc": 0.6944,
+    "val_mae": 2.0832,
+    "val_rmse": 2.8215,
+    "val_r2": -0.0897
+  },
+  "variant_log": {
+    "n_seeds": 5,
+    "threshold": 0.68,
+    "val_f1": 0.0,
+    "val_auc": 0.75,
+    "val_mae": 2.1459,
+    "val_rmse": 3.1917,
+    "val_r2": -0.3944
+  }
+}

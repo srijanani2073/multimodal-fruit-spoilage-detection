@@ -1,0 +1,11 @@
+{
+  "variant": "variant_log",
+  "n_seeds": 5,
+  "threshold": 0.68,
+  "test_f1": 0.0,
+  "test_auc": 0.4,
+  "test_mae": 0.9453,
+  "test_rmse": 1.1671,
+  "test_r2": -0.1607,
+  "n_test_trajectories": 11
+}

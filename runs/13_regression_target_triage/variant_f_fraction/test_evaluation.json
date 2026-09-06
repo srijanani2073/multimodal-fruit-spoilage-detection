@@ -1,0 +1,11 @@
+{
+  "variant": "variant_f_fraction",
+  "n_seeds": 5,
+  "threshold": 0.62,
+  "test_f1": 0.5714,
+  "test_auc": 0.5,
+  "test_mae": 1.0559,
+  "test_rmse": 1.269,
+  "test_r2": -0.3722,
+  "n_test_trajectories": 11
+}
