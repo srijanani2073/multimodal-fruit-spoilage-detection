@@ -6,6 +6,7 @@ Code.zip
 runs/**/model_state.pt
 runs/**/*.pt
 runs/**/*.pth
+runs_without_model_weights.zip
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
