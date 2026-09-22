@@ -9,8 +9,8 @@
   "variant_z_zscore": {
     "variant": "variant_z_zscore",
     "n_seeds": 5,
-    "threshold": 0.58,
-    "test_f1": 0.7143,
+    "threshold": 0.59,
+    "test_f1": 0.6154,
     "test_auc": 0.6,
     "test_mae": 2.6722,
     "test_rmse": 3.6691,
@@ -31,8 +31,8 @@
   "variant_log": {
     "variant": "variant_log",
     "n_seeds": 5,
-    "threshold": 0.68,
-    "test_f1": 0.0,
+    "threshold": 0.63,
+    "test_f1": 0.5,
     "test_auc": 0.4,
     "test_mae": 0.9453,
     "test_rmse": 1.1671,
@@ -51,8 +51,8 @@
     },
     "variant_f_fraction": {
       "n_seeds": 5,
-      "threshold": 0.62,
-      "val_f1": 0.75,
+      "threshold": 0.6,
+      "val_f1": 0.6667,
       "val_auc": 0.6944,
       "val_mae": 2.0832,
       "val_rmse": 2.8215,
@@ -60,8 +60,8 @@
     },
     "variant_log": {
       "n_seeds": 5,
-      "threshold": 0.68,
-      "val_f1": 0.0,
+      "threshold": 0.65,
+      "val_f1": 0.6,
       "val_auc": 0.75,
       "val_mae": 2.1459,
       "val_rmse": 3.1917,
