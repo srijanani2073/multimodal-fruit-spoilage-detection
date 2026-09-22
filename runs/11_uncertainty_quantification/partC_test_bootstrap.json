@@ -1,9 +1,9 @@
 {
-  "observed_test_f1": 0.6666666666666666,
-  "threshold": 0.68,
-  "ci_lower": 0.25,
-  "ci_upper": 0.9230769230769231,
-  "boot_mean": 0.6484446988013707,
-  "boot_std": 0.16791061809233274,
+  "observed_test_f1": 0.8,
+  "threshold": 0.66,
+  "ci_lower": 0.5,
+  "ci_upper": 1.0,
+  "boot_mean": 0.7895501210459647,
+  "boot_std": 0.12085909102738793,
   "n_test_trajectories": 11
 }
