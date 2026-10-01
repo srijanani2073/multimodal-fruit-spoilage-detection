@@ -7,6 +7,7 @@ runs/**/model_state.pt
 runs/**/*.pt
 runs/**/*.pth
 runs_without_model_weights.zip
+runs/0411_fusion_model/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
