@@ -1,0 +1,43 @@
+cff-version: 1.2.0
+message: "If you use this code, please cite the thesis below, and the TR-6 dataset it was built on."
+title: "Multimodal Fruit and Vegetable Degradation Modelling via Heterogeneous Sensory Fusion"
+type: software
+version: 1.0.0
+date-released: 2026-10-26
+license: MIT
+repository-code: "https://github.com/srijanani2073/multimodal-fruit-spoilage-detection"
+authors:
+  - given-names: Sri Janani
+    family-names: S
+    affiliation: "Amrita School of Computing, Amrita Vishwa Vidyapeetham, Coimbatore"
+keywords:
+  - multimodal fusion
+  - food spoilage
+  - thermal imaging
+  - gas sensing
+  - missing modalities
+preferred-citation:
+  type: thesis
+  title: "Multimodal Fruit and Vegetable Degradation Modelling via Heterogeneous Sensory Fusion"
+  authors:
+    - given-names: Sri Janani
+      family-names: S
+  institution:
+    name: "Amrita Vishwa Vidyapeetham, Amrita School of Computing, Coimbatore"
+  thesis-type: "M.Tech dissertation (Phase I)"
+  year: 2026
+references:
+  - type: article
+    title: "Multimodal perishable fruits and vegetables dataset"
+    authors:
+      - family-names: Unnikrishnan
+        given-names: D.
+      - family-names: Deepak
+        given-names: K.
+      - family-names: P T S
+        given-names: Y. A.
+      - family-names: T
+        given-names: B.
+    journal: "Data in Brief"
+    year: 2026
+    doi: "10.1016/j.dib.2026.112545"
