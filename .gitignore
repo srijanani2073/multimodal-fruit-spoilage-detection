@@ -148,3 +148,6 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+# Dataset and script outputs (never committed)
+data/
+outputs/

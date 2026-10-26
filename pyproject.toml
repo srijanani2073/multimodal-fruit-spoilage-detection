@@ -1,0 +1,32 @@
+[build-system]
+requires = ["setuptools>=64"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "trimodal-spoilage"
+version = "1.0.0"
+description = "Trimodal (sRGB + thermal + methane) produce-spoilage prediction on the TR-6 dataset"
+readme = "README.md"
+license = { file = "LICENSE" }
+authors = [{ name = "Sri Janani S" }]
+requires-python = ">=3.10"
+dependencies = [
+    "torch>=2.1",
+    "torchvision>=0.16",
+    "numpy>=1.24",
+    "scikit-learn>=1.3",
+    "pillow>=10.0",
+]
+
+[project.optional-dependencies]
+notebooks = ["jupyter", "ipykernel", "pandas", "matplotlib", "seaborn", "scipy", "shap", "thop", "opencv-python"]
+dev = ["pytest"]
+
+[project.urls]
+Repository = "https://github.com/srijanani2073/multimodal-fruit-spoilage-detection"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

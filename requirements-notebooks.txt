@@ -1,0 +1,11 @@
+# Extra packages for running the notebooks in Code/ (install requirements.txt first).
+-r requirements.txt
+jupyter
+ipykernel==7.3.0
+pandas==3.0.5
+matplotlib==3.11.0
+scipy==1.18.0
+shap==0.52.0                    # notebook 10 (explainability)
+thop==0.1.1.post2209072238      # FLOPs in notebooks 04 and 07
+opencv-python==5.0.0.93         # Grad-CAM overlays in notebook 10
+# Notebook 07 also downloads DINOv2 through torch.hub (needs internet on first run).
