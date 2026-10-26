@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<script>
+  (function () {
+    var saved = null;
+    try { saved = localStorage.getItem('theme'); } catch (e) {}
+    var theme = saved || (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+    document.documentElement.setAttribute('data-theme', theme);
+  })();
+</script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Results &middot; Multimodal Fruit &amp; Vegetable Degradation Modelling</title>
+<meta name="description" content="Test performance, missing-sensor robustness, ablation, backbone benchmark, cross-produce generalisation and interpretability of the trimodal spoilage model.">
+<meta property="og:title" content="Results &middot; Multimodal Fruit &amp; Vegetable Degradation Modelling">
+<meta property="og:description" content="Test performance, missing-sensor robustness, ablation, backbone benchmark, cross-produce generalisation and interpretability of the trimodal spoilage model.">
+<meta property="og:image" content="assets/figures/dataset_samples.jpg">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3E%3Crect width='10' height='30' fill='%233F6B4A'/%3E%3Crect x='10' width='10' height='30' fill='%23C1502E'/%3E%3Crect x='20' width='10' height='30' fill='%233E5C99'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=IBM+Plex+Mono:wght@300;400;500&family=IBM+Plex+Serif:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<div class="tri-band"><span class="b-rgb"></span><span class="b-ir"></span><span class="b-gas"></span></div>
+
+<div class="shell">
+  <aside class="sidebar">
+    <div class="sidebar-head">
+      <div>
+        <a href="index.html" class="sidebar-brand">Multimodal Degradation Modelling</a>
+        <div class="sidebar-tagline">Sensing spoilage across sight, heat, and gas</div>
+      </div>
+      <button class="menu-toggle" type="button" aria-expanded="false">Menu</button>
+    </div>
+    <nav aria-label="Site">
+      <div class="sidebar-group">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="objectives.html" class="nav-link">Objectives &amp; Problem</a>
+      </div>
+      <div class="sidebar-group">
+        <div class="sidebar-group-label">Methodology</div>
+        <a href="methodology.html" class="nav-link">Architecture</a>
+        <a href="methodology.html#investigations" class="nav-link">Investigations &amp; Findings</a>
+      </div>
+      <div class="sidebar-group">
+        <a href="dataset.html" class="nav-link">Dataset</a>
+        <a href="results.html" class="nav-link active" aria-current="page">Results</a>
+        <a href="progress.html" class="nav-link">Progress</a>
+        <a href="documentation.html" class="nav-link">Documentation</a>
+      </div>
+      <div class="sidebar-group">
+        <a href="team.html" class="nav-link">Team</a>
+        <a href="https://github.com/srijanani2073/multimodal-fruit-spoilage-detection" class="nav-link">GitHub Repository</a>
+        <a href="documentation.html#demos" class="nav-link">Demonstrations</a>
+      </div>
+    </nav>
+    <button class="theme-toggle" type="button" aria-label="Toggle light and dark mode">
+      <span class="toggle-track" aria-hidden="true"><span class="toggle-icon toggle-sun">&#9728;</span><span class="toggle-icon toggle-moon">&#9789;</span><span class="toggle-knob"></span></span>
+      <span class="toggle-label" aria-hidden="true"></span>
+    </button>
+  </aside>
+
+  <main id="main">
+
+    <p class="kicker">Results</p>
+    <h1>What the model can do, and how sure we can be</h1>
+    <p class="lede">
+      Results in the order of the investigations on the Methodology page. Confidence intervals are
+      given wherever they were computed. With 12 specimens and an 11-trajectory test set, every
+      number here should be read together with its uncertainty.
+    </p>
+
+    <h2 id="headline">Headline test result</h2>
+    <p>Proposed model, 10-seed ensemble, decision threshold 0.660 calibrated without the test set.</p>
+    <div class="metric-strip banner" role="list">
+      <div class="metric" role="listitem"><span class="value">0.800</span><span class="label">F1-score (95% CI 0.50&ndash;1.00)</span></div>
+      <div class="metric" role="listitem"><span class="value">0.733</span><span class="label">AUC</span></div>
+      <div class="metric" role="listitem"><span class="value">0.92<small> days</small></span><span class="label">Regression MAE (R&sup2; 0.04)</span></div>
+      <div class="metric" role="listitem"><span class="value">0.706</span><span class="label">F1 of always guessing &ldquo;spoiled&rdquo;</span></div>
+    </div>
+
+    <div class="versus" aria-label="Proposed model F1 against always guessing spoiled">
+      <div class="race-row full lead"><span>Proposed model</span><span class="race-track"><span style="width:80%"></span></span><span class="rv">0.800</span></div>
+      <div class="race-row late"><span>Always &ldquo;spoiled&rdquo;</span><span class="race-track"><span style="width:70.6%"></span></span><span class="rv">0.706</span></div>
+    </div>
+
+    <div class="two-col">
+      <div>
+        <h3 style="margin-top:0.4em">Confusion matrix</h3>
+        <div class="cm" role="table" aria-label="Confusion matrix on 11 test trajectories">
+          <span class="h"></span><span class="h">Predicted not spoiled</span><span class="h">Predicted spoiled</span>
+          <span class="h">Actually not spoiled</span><span class="c tn">2<small>correct</small></span><span class="c fp">3<small>false alarm</small></span>
+          <span class="h">Actually spoiled</span><span class="c fn">0<small>missed</small></span><span class="c tp">6<small>caught</small></span>
+        </div>
+      </div>
+      <div>
+        <h3 style="margin-top:0.4em">Per produce</h3>
+        <div class="table-wrap" style="margin-top:0.6rem">
+          <table class="data" style="margin:0">
+            <thead><tr><th>Produce</th><th>Not spoiled</th><th>Spoiled</th></tr></thead>
+            <tbody>
+              <tr><td>Banana</td><td>correct</td><td>correct</td></tr>
+              <tr><td>Carrot</td><td class="muted">no test day</td><td>correct</td></tr>
+              <tr><td>Guava</td><td class="worst">false alarm</td><td>correct</td></tr>
+              <tr><td>Indian gooseberry</td><td class="worst">false alarm</td><td>correct</td></tr>
+              <tr><td>Mango</td><td>correct</td><td>correct</td></tr>
+              <tr><td>Tomato</td><td class="worst">false alarm</td><td>correct</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <p>
+      Every spoiled trajectory was caught. The model improves on an always-spoiled guess by
+      0.094 F1, and all of that improvement comes from correctly clearing two fresh trajectories.
+      Its three mistakes are false alarms on three different produce types, each within 0.04 of the
+      threshold. For a storage room, an early warning that turns out unnecessary costs less than
+      missed spoilage.
+    </p>
+    <figure class="fig ">
+      <a class="plate" href="assets/figures/fig2.svg"><img src="assets/figures/fig2.svg" alt="Confusion matrix, ROC curve and threshold sweep"></a>
+      <figcaption><b>Test-set classification.</b> (a) Confusion matrix at the k-fold median threshold. (b) ROC curve of the ensemble (AUC 0.733). (c) F1 against threshold on the calibration data; the six per-fold thresholds range 0.65&ndash;0.68 and their median, 0.660, matches the single-split estimate. Select the figure to enlarge it.</figcaption>
+    </figure>
+
+    <hr class="rule">
+
+    <h2 id="robustness">Switch a sensor off</h2>
+    <p>
+      To mimic sensor failure, a chosen sensor was switched off on a random share of days, from 0%
+      to 50%, with five random repeats for each of the ten seeds. The proposed model, which simply
+      leaves a missing sensor out of its attention, is compared with early and late fusion
+      baselines that fill missing inputs with the mean.
+    </p>
+
+    <div class="chart-card" id="robustness-card">
+      <section id="robustness-explorer">
+        <div class="controls">
+          <span class="ctl-label">Sensor that fails</span>
+          <span class="seg" role="group" aria-label="Sensor that fails">
+            <button type="button" class="rgb" data-pattern="rgb">sRGB</button>
+            <button type="button" class="ir" data-pattern="ir">Thermal</button>
+            <button type="button" class="gas" data-pattern="gas">Gas</button>
+            <button type="button" data-pattern="joint">All three</button>
+          </span>
+          <span class="ctl-label">Evaluated on</span>
+          <span class="seg" role="group" aria-label="Evaluation set">
+            <button type="button" data-split="val">Validation</button>
+            <button type="button" data-split="test">Test</button>
+          </span>
+        </div>
+        <div class="chart-legend"><span><i class="sw"></i>Proposed model</span><span><i class="sw early"></i>Early fusion</span><span><i class="sw late"></i>Late fusion</span></div>
+        <div class="chart"></div>
+        <div class="chart-readout"></div>
+        <div class="sig-box small" style="margin-top:0.6rem;display:grid;gap:0.3rem"></div>
+      </section>
+    </div>
+
+    <p>
+      At 50% missing on the validation set, the proposed model has the highest F1 under thermal,
+      gas and joint failure; early fusion is ahead only when the sRGB camera fails. On the test set
+      it leads in 19 of the 24 sensor-by-level combinations. After a Benjamini&ndash;Hochberg
+      correction across all 29 comparisons in this work, five advantages remain significant:
+      gas-only and thermal-only failure against both baselines on validation, and gas-only failure
+      against late fusion on test.
+    </p>
+    <div class="split-callouts">
+      <div class="callout finding">
+        <div class="callout-label">Strongest result</div>
+        <p>
+          Losing the gas sensor barely affects the proposed model, while both baselines drop. This
+          held on both validation and test. Gas also receives the least attention weight (about
+          0.22&ndash;0.27 against 0.37&ndash;0.39 for the cameras), so the two cameras can cover for it.
+        </p>
+      </div>
+      <div class="callout limitation">
+        <div class="callout-label">Weakest result</div>
+        <p>
+          Losing the sRGB camera hurts the proposed model most: it loses 13.4% of its F1 at 50%
+          missing, against 1.7% and 3.6% for the baselines. Colour seems to carry information the
+          other two sensors cannot replace. The simulation also uses random, independent dropouts,
+          not the long correlated failures real sensors have.
+        </p>
+      </div>
+    </div>
+
+    <hr class="rule">
+
+    <h2 id="ablation">Ablation study</h2>
+    <p>
+      Six alternatives were trained with ten seeds each: four that remove or replace one component
+      and two simpler fusion strategies. The chart shows how each one's ensemble F1 differs from the
+      full model on validation, with a 95% paired-bootstrap interval.
+    </p>
+    <div class="chart-card">
+      <div class="chart" id="ablation-chart"></div>
+    </div>
+    <div class="table-wrap">
+      <table class="data">
+        <caption>Validation results, 10 seeds per configuration</caption>
+        <thead><tr><th>Configuration</th><th>Params (M)</th><th>Seed F1 (mean &plusmn; s.d.)</th><th>Ensemble F1</th><th>Ensemble AUC</th></tr></thead>
+        <tbody>
+          <tr><td>Full model</td><td>32.47</td><td>0.813 &plusmn; 0.053</td><td>0.800</td><td>0.944</td></tr>
+          <tr><td>No CBAM</td><td>32.19</td><td>0.823 &plusmn; 0.057</td><td>0.750</td><td>0.806</td></tr>
+          <tr><td>No cross-modal attention</td><td>32.47</td><td>0.767 &plusmn; 0.069</td><td class="worst">0.667</td><td>0.972</td></tr>
+          <tr><td>LSTM instead of Transformer</td><td>32.34</td><td>0.732 &plusmn; 0.043</td><td>0.857</td><td>0.667</td></tr>
+          <tr><td>Mean imputation instead of GRU-D</td><td>32.47</td><td>0.815 &plusmn; 0.084</td><td class="best">0.909</td><td>0.972</td></tr>
+          <tr><td>Early fusion</td><td>32.06</td><td>0.740 &plusmn; 0.055</td><td>0.706</td><td class="worst">0.611</td></tr>
+          <tr><td>Late fusion</td><td>32.14</td><td>0.702 &plusmn; 0.039</td><td class="worst">0.667</td><td>0.667</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="callout limitation">
+      <div class="callout-label">Inconclusive at this sample size</div>
+      <p>
+        Every interval crosses zero, so no component can be called necessary or harmful. Two
+        simpler variants even score higher. Two independent training runs of the same full model
+        differ by 0.05 F1 (0.863 vs. 0.813 per-seed validation mean), which is as large as most of
+        these differences. That is why this project's claims are about the whole system and its
+        robustness, not individual components.
+      </p>
+    </div>
+
+    <h3>The CBAM question, tested directly</h3>
+    <p>
+      Grad-CAM maps raised doubts about whether CBAM helps, so a model with CBAM removed from both
+      cameras was trained from scratch and evaluated on test, in two independent runs.
+    </p>
+    <div class="table-wrap">
+      <table class="data">
+        <thead><tr><th>Model</th><th>Test F1</th><th>Test AUC</th><th>Test R&sup2;</th></tr></thead>
+        <tbody>
+          <tr><td>Full model (with CBAM)</td><td class="best">0.8000</td><td class="best">0.7333</td><td class="best">0.0439</td></tr>
+          <tr><td>No CBAM, run 1</td><td>0.7500</td><td>0.4667</td><td>&minus;0.2016</td></tr>
+          <tr><td>No CBAM, run 2</td><td>0.7143</td><td class="worst">0.5000</td><td>&minus;0.1607</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p>
+      Both runs without CBAM are worse on every metric, with AUC at or below chance. A paired
+      bootstrap on test was not significant (F1 p &asymp; 0.53, AUC p &asymp; 0.26), so CBAM is kept
+      because two independent runs agree, not because of a significance test.
+    </p>
+
+    <hr class="rule">
+
+    <h2 id="backbone">Choosing the sRGB backbone</h2>
+    <p>
+      Eight backbones were swapped into the full model in place of ConvNeXt-Tiny and trained with
+      ten seeds each. Cost figures are for the complete model with that backbone.
+    </p>
+    <div class="chart-card" id="backbone-explorer">
+      <div class="controls">
+        <span class="ctl-label">Horizontal axis</span>
+        <span class="seg" role="group" aria-label="Horizontal axis">
+          <button type="button" data-x="flops">GFLOPs</button>
+          <button type="button" data-x="params">Parameters</button>
+          <button type="button" data-x="lat">Latency</button>
+        </span>
+      </div>
+      <div class="chart"></div>
+      <div class="chart-readout"></div>
+    </div>
+    <p>
+      ConvNeXt-Tiny has the highest mean validation F1 (0.791), just ahead of Swin-Tiny (0.789).
+      Its margin over the four closest candidates is not significant, and its lead over the three
+      weakest does not survive correction. The model with EfficientNet-B0 reaches 0.770 with about
+      a quarter of the parameters, a sixth of the compute and half the latency, which makes it the
+      obvious choice for low-power hardware. DINOv2 was used fully frozen, so its result also
+      reflects a different training setup.
+    </p>
+
+    <hr class="rule">
+
+    <h2 id="lofo">A produce type the model has never seen</h2>
+    <p>
+      In leave-one-fruit-out testing the model is trained on five produce types and tested on both
+      trajectories of the sixth. Each dot is one seed; it is filled when that seed got both
+      held-out trajectories right. The right column is the ten-seed ensemble.
+    </p>
+    <div class="lofo">
+      <div class="lofo-row"><span class="ln">Banana</span><span class="lofo-dots" aria-label="3 of 10 seeds got both right"><i class="ok"></i><i class="ok"></i><i class="ok"></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span><span class="ens">1 of 2</span></div>
+      <div class="lofo-row"><span class="ln">Carrot</span><span class="lofo-dots" aria-label="1 of 10 seeds got both right"><i class="ok"></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span><span class="ens">1 of 2</span></div>
+      <div class="lofo-row"><span class="ln">Guava</span><span class="lofo-dots" aria-label="0 of 10 seeds got both right"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span><span class="ens">1 of 2</span></div>
+      <div class="lofo-row"><span class="ln">Indian gooseberry</span><span class="lofo-dots" aria-label="1 of 10 seeds got both right"><i class="ok"></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span><span class="ens">1 of 2</span></div>
+      <div class="lofo-row"><span class="ln">Mango</span><span class="lofo-dots" aria-label="1 of 10 seeds got both right"><i class="ok"></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span><span class="ens">1 of 2</span></div>
+      <div class="lofo-row"><span class="ln">Tomato</span><span class="lofo-dots" aria-label="6 of 10 seeds got both right"><i class="ok"></i><i class="ok"></i><i class="ok"></i><i class="ok"></i><i class="ok"></i><i class="ok"></i><i></i><i></i><i></i><i></i></span><span class="ens full">2 of 2</span></div>
+    </div>
+    <div class="callout limitation">
+      <div class="callout-label">The most serious limitation</div>
+      <p>
+        The ensemble got both held-out trajectories right only for tomato. Indian gooseberry, with
+        the second-most training days, generalised worst (mean seed F1 0.17), which suggests that how
+        distinctive a produce looks matters more than how much data there is. The gap between this
+        and the main test result also suggests the main result benefits from having seen earlier
+        days of the same specimens.
+      </p>
+    </div>
+
+    <hr class="rule">
+
+    <h2 id="interpretability">What the model looks at</h2>
+    <figure class="fig ">
+      <a class="plate" href="assets/figures/gradcam_misclassified.jpg"><img src="assets/figures/gradcam_misclassified.jpg" alt="Grad-CAM on the three test misclassifications"></a>
+      <figcaption><b>All three test errors are false alarms</b> (guava 0.67, Indian gooseberry 0.70, tomato 0.68, threshold 0.660). In several maps the strongest activation falls on the background instead of the fruit, so the model sometimes uses cues unrelated to the produce.</figcaption>
+    </figure>
+    <figure class="fig ">
+      <a class="plate" href="assets/figures/gradcam_correct.jpg"><img src="assets/figures/gradcam_correct.jpg" alt="Grad-CAM on correct test predictions"></a>
+      <figcaption><b>Correct predictions for contrast.</b> Even the most confident correct fresh prediction (banana) sits at the threshold; only 2 of 5 fresh test trajectories were cleared. For the spoiled guava the colour map concentrates at the stem end.</figcaption>
+    </figure>
+    <div class="two-col">
+      <figure class="fig ">
+      <a class="plate" href="assets/figures/figS1.svg"><img src="assets/figures/figS1.svg" alt="SHAP importance of the six gas features"></a>
+      <figcaption><b>Gas features (SHAP).</b> The full model relies most on mean methane concentration; the mean-imputation variant relies on left&ndash;right asymmetry instead, so GRU-D changes which gas signal is used.</figcaption>
+    </figure>
+      <div>
+        <h3 style="margin-top:2rem">Attention between sensors</h3>
+        <p>
+          Averaged over ten seeds at each trajectory's final day, cross-modal attention gives the gas
+          sensor 0.27 of its weight for fresh predictions and 0.22 for spoiled ones, against roughly
+          0.37&ndash;0.39 for each camera. That matches the robustness result: gas is the easiest
+          sensor to lose.
+        </p>
+      </div>
+    </div>
+
+    <hr class="rule">
+
+    <h2 id="uncertainty">Uncertainty</h2>
+    <figure class="fig ">
+      <a class="plate" href="assets/figures/fig8.svg"><img src="assets/figures/fig8.svg" alt="Cross-validation F1 per fold and bootstrap interval of the test F1"></a>
+      <figcaption><b>How stable is 0.80?</b> (a) Six-fold cross-validation on the 12 training-and-validation trajectories, retraining each fold: mean F1 0.833, s.d. 0.183. (b) Bootstrap of the test F1 over 11 trajectories: 95% CI [0.50, 1.00]. With so few trajectories, a single one can move F1 by 0.2.</figcaption>
+    </figure>
+
+    <hr class="rule">
+
+    <h2 id="regression">Days until spoilage</h2>
+    <p>
+      The regression head is off by 0.92 days on average, but its R&sup2; of 0.04 shows it does
+      little better than predicting the mean, and it cannot fit its own training data well
+      (train R&sup2; &minus;0.27). Three ways of rescaling the target were tried, each with a
+      five-seed ensemble on the same test set.
+    </p>
+    <div class="table-wrap">
+      <table class="data">
+        <thead><tr><th>Target</th><th>F1</th><th>AUC</th><th>MAE</th><th>RMSE</th><th>R&sup2;</th></tr></thead>
+        <tbody>
+          <tr><td>Raw days (reported model)</td><td class="best">0.8000</td><td class="best">0.7333</td><td class="best">0.9188</td><td class="best">1.0593</td><td class="best">0.0439</td></tr>
+          <tr><td>Per-produce z-score</td><td>0.6154</td><td>0.6000</td><td>2.6722</td><td>3.6691</td><td class="worst">&minus;10.4712</td></tr>
+          <tr><td>Fraction of shelf life</td><td>0.5714</td><td>0.5000</td><td>1.0559</td><td>1.2690</td><td>&minus;0.3722</td></tr>
+          <tr><td>Log transform</td><td class="worst">0.5000</td><td>0.4000</td><td>0.9453</td><td>1.1671</td><td>&minus;0.1607</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="callout limitation">
+      <div class="callout-label">All three fixes failed</div>
+      <p>
+        None improved the regression and all of them lowered classification F1. The z-score version
+        failed worst because its per-produce statistics come from only one or two training
+        trajectories each, so small errors explode when converted back to days. The raw-day head is
+        kept and the regression problem is reported as open.
+      </p>
+    </div>
+
+    <footer class="page-footer">
+      <p>School of Computing, Amrita Vishwa Vidyapeetham &middot; Sri Janani S &middot; Guide: Dr. Bagyammal T.</p>
+    </footer>
+  </main>
+</div>
+
+<script src="theme.js"></script>
+<script src="site.js"></script>
+</body>
+</html>

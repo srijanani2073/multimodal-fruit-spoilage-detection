@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<script>
+  (function () {
+    var saved = null;
+    try { saved = localStorage.getItem('theme'); } catch (e) {}
+    var theme = saved || (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+    document.documentElement.setAttribute('data-theme', theme);
+  })();
+</script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Documentation &middot; Multimodal Fruit &amp; Vegetable Degradation Modelling</title>
+<meta name="description" content="The notebook pipeline behind every result, how to reproduce it, and how to cite the work.">
+<meta property="og:title" content="Documentation &middot; Multimodal Fruit &amp; Vegetable Degradation Modelling">
+<meta property="og:description" content="The notebook pipeline behind every result, how to reproduce it, and how to cite the work.">
+<meta property="og:image" content="assets/figures/dataset_samples.jpg">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3E%3Crect width='10' height='30' fill='%233F6B4A'/%3E%3Crect x='10' width='10' height='30' fill='%23C1502E'/%3E%3Crect x='20' width='10' height='30' fill='%233E5C99'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=IBM+Plex+Mono:wght@300;400;500&family=IBM+Plex+Serif:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<div class="tri-band"><span class="b-rgb"></span><span class="b-ir"></span><span class="b-gas"></span></div>
+
+<div class="shell">
+  <aside class="sidebar">
+    <div class="sidebar-head">
+      <div>
+        <a href="index.html" class="sidebar-brand">Multimodal Degradation Modelling</a>
+        <div class="sidebar-tagline">Sensing spoilage across sight, heat, and gas</div>
+      </div>
+      <button class="menu-toggle" type="button" aria-expanded="false">Menu</button>
+    </div>
+    <nav aria-label="Site">
+      <div class="sidebar-group">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="objectives.html" class="nav-link">Objectives &amp; Problem</a>
+      </div>
+      <div class="sidebar-group">
+        <div class="sidebar-group-label">Methodology</div>
+        <a href="methodology.html" class="nav-link">Architecture</a>
+        <a href="methodology.html#investigations" class="nav-link">Investigations &amp; Findings</a>
+      </div>
+      <div class="sidebar-group">
+        <a href="dataset.html" class="nav-link">Dataset</a>
+        <a href="results.html" class="nav-link">Results</a>
+        <a href="progress.html" class="nav-link">Progress</a>
+        <a href="documentation.html" class="nav-link active" aria-current="page">Documentation</a>
+      </div>
+      <div class="sidebar-group">
+        <a href="team.html" class="nav-link">Team</a>
+        <a href="https://github.com/srijanani2073/multimodal-fruit-spoilage-detection" class="nav-link">GitHub Repository</a>
+        <a href="documentation.html#demos" class="nav-link">Demonstrations</a>
+      </div>
+    </nav>
+    <button class="theme-toggle" type="button" aria-label="Toggle light and dark mode">
+      <span class="toggle-track" aria-hidden="true"><span class="toggle-icon toggle-sun">&#9728;</span><span class="toggle-icon toggle-moon">&#9789;</span><span class="toggle-knob"></span></span>
+      <span class="toggle-label" aria-hidden="true"></span>
+    </button>
+  </aside>
+
+  <main id="main">
+
+    <p class="kicker">Documentation</p>
+    <h1>Reproducing and exploring this work</h1>
+    <p class="lede">
+      Every result on this site traces back to a numbered notebook. They are listed in the order
+      they run, followed by what you need to reproduce them and how to cite the work.
+    </p>
+    <div class="btn-row" style="margin:1.5rem 0 0">
+      <a href="https://github.com/srijanani2073/multimodal-fruit-spoilage-detection" class="btn primary">Open the GitHub repository</a>
+      <a href="https://doi.org/10.6084/m9.figshare.30783827" class="btn">Get the TR-6 dataset</a>
+    </div>
+
+    <h2>Notebooks</h2>
+    <ol class="sequence">
+      <li><span class="num">01</span><div><h4>data_pipeline</h4><p>Manifest construction, session grouping, splits and the trimodal data loaders shared by every later notebook.</p></div></li>
+      <li><span class="num">02</span><div><h4>dataset_analysis</h4><p>TR-6 composition, missingness, class balance and per-produce target distributions. Source for the <a href="dataset.html">Dataset page</a>.</p></div></li>
+      <li><span class="num">03</span><div><h4>encoders_baselines</h4><p>CBAM visual encoders and the GRU-D gas encoder, developed and checked on their own.</p></div></li>
+      <li><span class="num">04</span><div><h4>fusion_model</h4><p>The full trimodal model, ten-seed training, ensembling, threshold calibration and the headline test result.</p></div></li>
+      <li><span class="num">05</span><div><h4>ablation_study</h4><p>Seven-configuration ablation: four component ablations and two fusion baselines.</p></div></li>
+      <li><span class="num">06</span><div><h4>bootstrap_significance</h4><p>Paired bootstrap significance tests for the ablation.</p></div></li>
+      <li><span class="num">07</span><div><h4>backbone_benchmark</h4><p>Eight-candidate sRGB backbone comparison, including a frozen DINOv2.</p></div></li>
+      <li><span class="num">08</span><div><h4>missing_data_robustness</h4><p>F1 under simulated sRGB, thermal, gas and joint sensor dropout on validation and test.</p></div></li>
+      <li><span class="num">09</span><div><h4>lofo_generalization</h4><p>Six-fold leave-one-fruit-out generalisation test.</p></div></li>
+      <li><span class="num">10</span><div><h4>explainability</h4><p>Grad-CAM on the visual encoders, SHAP on the gas features and cross-modal attention weights.</p></div></li>
+      <li><span class="num">11</span><div><h4>uncertainty_quantification</h4><p>Bootstrap confidence intervals and an independent six-fold retraining cross-validation.</p></div></li>
+      <li><span class="num">12</span><div><h4>regression_diagnosis</h4><p>Why the shelf-life regression is weak: train/validation/test R&sup2; and trivial-baseline checks.</p></div></li>
+      <li><span class="num">13</span><div><h4>regression_target_triage_combined</h4><p>All three regression-target rescalings (z-score, fraction, log) trained and tested in one run.</p></div></li>
+      <li><span class="num">14</span><div><h4>dmodel_dropout_sweep</h4><p>Capacity re-sweep of embedding size and dropout; the defaults were kept.</p></div></li>
+    </ol>
+
+    <h3>Supporting notebooks</h3>
+    <ul>
+      <li><strong>no_cbam_test_evaluation</strong>: trains the clean no-CBAM model from scratch and runs its one-time test evaluation.</li>
+      <li><strong>attention_concentration</strong>: the exploratory Grad-CAM concentration measure that first raised the CBAM question. Superseded by the direct test and kept as a record.</li>
+    </ul>
+
+    <h2>Reproducing this work</h2>
+    <p>
+      There are two ways in. The numbered notebooks are the original research record, each one
+      self-contained. The <code>scripts/</code> folder repeats the core pipeline (training, test
+      evaluation, sensor-dropout robustness and significance tests) as command-line programs built
+      on one shared package, for reruns without opening a notebook. The experiments ran in Python
+      3.14 with PyTorch on an Apple Silicon machine using the MPS backend; the scripts also run on
+      CUDA and CPU. Installation steps are in <code>INSTALL.md</code> in the repository.
+    </p>
+    <h3>With the notebooks</h3>
+    <ol class="sequence">
+      <li><span class="num">1</span><div><h4>Get the data</h4><p>Download TR-6 from figshare and point <code>ROOT</code> in the notebooks to its folder.</p></div></li>
+      <li><span class="num">2</span><div><h4>Build the manifests</h4><p>Run notebook 01 once. It writes the master manifest and the train / validation / test split.</p></div></li>
+      <li><span class="num">3</span><div><h4>Train the model</h4><p>Run notebook 04. It trains ten seeds and saves their checkpoints, which notebooks 05&ndash;13 reuse.</p></div></li>
+      <li><span class="num">4</span><div><h4>Run the analyses</h4><p>Run 05 to 14 in order. Running everything from a clean state reproduces the full pipeline.</p></div></li>
+    </ol>
+
+    <h3>With the scripts</h3>
+    <p>From the repository root, after installing the requirements and placing TR-6 under <code>data/TR-6</code>:</p>
+    <div class="cite"><pre id="cmd-scripts">python scripts/check_setup.py
+python scripts/train.py --variant full --seeds 0-9
+python scripts/evaluate.py --variant full
+python scripts/robustness.py --variant full
+bash scripts/reproduce_all.sh      # every variant, then the comparisons</pre><button class="copy-btn" type="button" data-copy="cmd-scripts">Copy</button></div>
+
+    <h2>Website dataset images</h2>
+    <p>
+      The sample images on the <a href="dataset.html">Dataset page</a> live in
+      <code>assets/dataset/</code>. To regenerate a matching sRGB and thermal sample for all twelve
+      classes from your local copy of TR-6, run from the repository root:
+    </p>
+    <div class="cite"><pre id="cmd-export">python docs/tools/export_dataset_samples.py --root ~/Desktop/Thesis/TR-6</pre><button class="copy-btn" type="button" data-copy="cmd-export">Copy</button></div>
+
+    <h2>Citing</h2>
+    <p>If you use the dataset, please cite:</p>
+    <div class="cite"><pre id="bib-dataset">@article{unnikrishnan2026tr6,
+  author  = {Unnikrishnan, D. and Deepak, K. and {P T S}, Y. A. and T, B.},
+  title   = {Multimodal perishable fruits and vegetables dataset},
+  journal = {Data in Brief},
+  year    = {2026},
+  doi     = {10.1016/j.dib.2026.112545}
+}</pre><button class="copy-btn" type="button" data-copy="bib-dataset">Copy</button></div>
+    <p>To refer to this project:</p>
+    <div class="cite"><pre id="bib-thesis">@mastersthesis{srijanani2026trimodal,
+  author = {Sri Janani S},
+  title  = {Multimodal Fruit and Vegetable Degradation Modelling via
+            Heterogeneous Sensory Fusion},
+  school = {Amrita Vishwa Vidyapeetham, Amrita School of Computing, Coimbatore},
+  type   = {M.Tech dissertation (Phase I)},
+  year   = {2026}
+}</pre><button class="copy-btn" type="button" data-copy="bib-thesis">Copy</button></div>
+
+    <h2 id="demos">Demonstrations</h2>
+    <p>
+      Short screen recordings of the interactive parts of this site, with captions. Each runs on
+      the real numbers from the thesis.
+    </p>
+    <div class="demos">
+      <figure class="demo">
+        <video controls preload="metadata" playsinline poster="assets/video/demo-sensor.jpg">
+          <source src="assets/video/demo-sensor.mp4" type="video/mp4">
+        </video>
+        <figcaption><b>Pull a sensor</b> <span class="muted">0:32</span><br>Switching the gas sensor, the sRGB camera and the thermal camera off on more and more days, and how the proposed model compares with the fusion baselines.</figcaption>
+      </figure>
+      <figure class="demo">
+        <video controls preload="metadata" playsinline poster="assets/video/demo-dataset.jpg">
+          <source src="assets/video/demo-dataset.mp4" type="video/mp4">
+        </video>
+        <figcaption><b>Exploring TR-6</b> <span class="muted">0:38</span><br>Comparing the colour and thermal cameras for banana, carrot, guava and tomato, fresh and spoiled.</figcaption>
+      </figure>
+      <figure class="demo">
+        <video controls preload="metadata" playsinline poster="assets/video/demo-results.jpg">
+          <source src="assets/video/demo-results.mp4" type="video/mp4">
+        </video>
+        <figcaption><b>Reading the results</b> <span class="muted">0:36</span><br>The headline test result, the robustness explorer on validation and test, and the backbone benchmark.</figcaption>
+      </figure>
+      <figure class="demo">
+        <video controls preload="metadata" playsinline poster="assets/video/demo-architecture.jpg">
+          <source src="assets/video/demo-architecture.mp4" type="video/mp4">
+        </video>
+        <figcaption><b>Inside the architecture</b> <span class="muted">0:24</span><br>Walking through the model block by block, from the three encoders to the uncertainty-weighted loss.</figcaption>
+      </figure>
+    </div>
+
+    <footer class="page-footer">
+      <p>School of Computing, Amrita Vishwa Vidyapeetham &middot; Sri Janani S &middot; Guide: Dr. Bagyammal T.</p>
+    </footer>
+  </main>
+</div>
+
+<script src="theme.js"></script>
+<script src="site.js"></script>
+</body>
+</html>

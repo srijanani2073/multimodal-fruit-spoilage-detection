@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<script>
+  (function () {
+    var saved = null;
+    try { saved = localStorage.getItem('theme'); } catch (e) {}
+    var theme = saved || (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+    document.documentElement.setAttribute('data-theme', theme);
+  })();
+</script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Team &middot; Multimodal Fruit &amp; Vegetable Degradation Modelling</title>
+<meta name="description" content="The student and guide behind the trimodal spoilage detection thesis at Amrita School of Computing, Coimbatore.">
+<meta property="og:title" content="Team &middot; Multimodal Fruit &amp; Vegetable Degradation Modelling">
+<meta property="og:description" content="The student and guide behind the trimodal spoilage detection thesis at Amrita School of Computing, Coimbatore.">
+<meta property="og:image" content="assets/figures/dataset_samples.jpg">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3E%3Crect width='10' height='30' fill='%233F6B4A'/%3E%3Crect x='10' width='10' height='30' fill='%23C1502E'/%3E%3Crect x='20' width='10' height='30' fill='%233E5C99'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=IBM+Plex+Mono:wght@300;400;500&family=IBM+Plex+Serif:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<div class="tri-band"><span class="b-rgb"></span><span class="b-ir"></span><span class="b-gas"></span></div>
+
+<div class="shell">
+  <aside class="sidebar">
+    <div class="sidebar-head">
+      <div>
+        <a href="index.html" class="sidebar-brand">Multimodal Degradation Modelling</a>
+        <div class="sidebar-tagline">Sensing spoilage across sight, heat, and gas</div>
+      </div>
+      <button class="menu-toggle" type="button" aria-expanded="false">Menu</button>
+    </div>
+    <nav aria-label="Site">
+      <div class="sidebar-group">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="objectives.html" class="nav-link">Objectives &amp; Problem</a>
+      </div>
+      <div class="sidebar-group">
+        <div class="sidebar-group-label">Methodology</div>
+        <a href="methodology.html" class="nav-link">Architecture</a>
+        <a href="methodology.html#investigations" class="nav-link">Investigations &amp; Findings</a>
+      </div>
+      <div class="sidebar-group">
+        <a href="dataset.html" class="nav-link">Dataset</a>
+        <a href="results.html" class="nav-link">Results</a>
+        <a href="progress.html" class="nav-link">Progress</a>
+        <a href="documentation.html" class="nav-link">Documentation</a>
+      </div>
+      <div class="sidebar-group">
+        <a href="team.html" class="nav-link active" aria-current="page">Team</a>
+        <a href="https://github.com/srijanani2073/multimodal-fruit-spoilage-detection" class="nav-link">GitHub Repository</a>
+        <a href="documentation.html#demos" class="nav-link">Demonstrations</a>
+      </div>
+    </nav>
+    <button class="theme-toggle" type="button" aria-label="Toggle light and dark mode">
+      <span class="toggle-track" aria-hidden="true"><span class="toggle-icon toggle-sun">&#9728;</span><span class="toggle-icon toggle-moon">&#9789;</span><span class="toggle-knob"></span></span>
+      <span class="toggle-label" aria-hidden="true"></span>
+    </button>
+  </aside>
+
+  <main id="main">
+
+    <p class="kicker">Team</p>
+    <h1>Who worked on this</h1>
+    <p class="lede">A single-student M.Tech thesis project, carried out under supervision at the School of Computing, Amrita Vishwa Vidyapeetham.</p>
+
+    <hr class="rule">
+
+    <div class="people">
+      <div class="person">
+        <h3 style="margin-top: 0;">Sri Janani S</h3>
+        <p style="color: var(--ink-soft); font-family: var(--font-head); font-size: 0.9rem; margin-bottom: 1rem;">
+          Student researcher &middot; M.Tech, Computer Science and Engineering (2025&ndash;2027)
+        </p>
+        <p>
+          Designed and implemented the trimodal architecture, built and ran the full
+          experimental pipeline: data preparation, training, ablation studies, significance
+          testing, robustness, explainability, and the regression-target investigation documented
+          on the Methodology and Results pages.
+        </p>
+        <dl>
+          <dt>Register no.</dt><dd>CB.SC.P2CSE25034</dd>
+          <dt>Email</dt><dd>srijanani2073@gmail.com</dd>
+          <dt>Code</dt><dd><a href="https://github.com/srijanani2073/multimodal-fruit-spoilage-detection">github.com/srijanani2073</a></dd>
+        </dl>
+      </div>
+
+      <div class="person">
+        <h3 style="margin-top: 0;">Dr. Bagyammal T.</h3>
+        <p style="color: var(--ink-soft); font-family: var(--font-head); font-size: 0.9rem; margin-bottom: 1rem;">
+          Guide &middot; Assistant Professor (Sl.Gd.), School of Computing, Coimbatore
+        </p>
+        <p>
+          Supervised the project's direction and methodology at the School of Computing,
+          Amrita Vishwa Vidyapeetham.
+        </p>
+        <dl>
+          <dt>Qualifications</dt><dd>B.E., M.Tech., Ph.D.</dd>
+          <dt>Research</dt><dd>Image processing, image retrieval, video processing</dd>
+          <dt>Email</dt><dd>t_bagyammal@cb.amrita.edu</dd>
+        </dl>
+      </div>
+    </div>
+
+    <hr class="rule">
+
+    <h2>Institution</h2>
+    <p>
+      Department of Computer Science and Engineering<br>
+      School of Computing, Amrita Vishwa Vidyapeetham<br>
+      Coimbatore &ndash; 641 112
+    </p>
+
+    <footer class="page-footer">
+      <p>School of Computing, Amrita Vishwa Vidyapeetham &middot; Sri Janani S &middot; Guide: Dr. Bagyammal T.</p>
+    </footer>
+  </main>
+</div>
+
+<script src="theme.js"></script>
+<script src="site.js"></script>
+</body>
+</html>

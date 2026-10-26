@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<script>
+  (function () {
+    var saved = null;
+    try { saved = localStorage.getItem('theme'); } catch (e) {}
+    var theme = saved || (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+    document.documentElement.setAttribute('data-theme', theme);
+  })();
+</script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Methodology &middot; Multimodal Fruit &amp; Vegetable Degradation Modelling</title>
+<meta name="description" content="The trimodal fusion architecture block by block, the training recipe, the evaluation protocol, and a log of every investigation.">
+<meta property="og:title" content="Methodology &middot; Multimodal Fruit &amp; Vegetable Degradation Modelling">
+<meta property="og:description" content="The trimodal fusion architecture block by block, the training recipe, the evaluation protocol, and a log of every investigation.">
+<meta property="og:image" content="assets/figures/dataset_samples.jpg">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3E%3Crect width='10' height='30' fill='%233F6B4A'/%3E%3Crect x='10' width='10' height='30' fill='%23C1502E'/%3E%3Crect x='20' width='10' height='30' fill='%233E5C99'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=IBM+Plex+Mono:wght@300;400;500&family=IBM+Plex+Serif:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<div class="tri-band"><span class="b-rgb"></span><span class="b-ir"></span><span class="b-gas"></span></div>
+
+<div class="shell">
+  <aside class="sidebar">
+    <div class="sidebar-head">
+      <div>
+        <a href="index.html" class="sidebar-brand">Multimodal Degradation Modelling</a>
+        <div class="sidebar-tagline">Sensing spoilage across sight, heat, and gas</div>
+      </div>
+      <button class="menu-toggle" type="button" aria-expanded="false">Menu</button>
+    </div>
+    <nav aria-label="Site">
+      <div class="sidebar-group">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="objectives.html" class="nav-link">Objectives &amp; Problem</a>
+      </div>
+      <div class="sidebar-group">
+        <div class="sidebar-group-label">Methodology</div>
+        <a href="methodology.html" class="nav-link active" aria-current="page">Architecture</a>
+        <a href="methodology.html#investigations" class="nav-link">Investigations &amp; Findings</a>
+      </div>
+      <div class="sidebar-group">
+        <a href="dataset.html" class="nav-link">Dataset</a>
+        <a href="results.html" class="nav-link">Results</a>
+        <a href="progress.html" class="nav-link">Progress</a>
+        <a href="documentation.html" class="nav-link">Documentation</a>
+      </div>
+      <div class="sidebar-group">
+        <a href="team.html" class="nav-link">Team</a>
+        <a href="https://github.com/srijanani2073/multimodal-fruit-spoilage-detection" class="nav-link">GitHub Repository</a>
+        <a href="documentation.html#demos" class="nav-link">Demonstrations</a>
+      </div>
+    </nav>
+    <button class="theme-toggle" type="button" aria-label="Toggle light and dark mode">
+      <span class="toggle-track" aria-hidden="true"><span class="toggle-icon toggle-sun">&#9728;</span><span class="toggle-icon toggle-moon">&#9789;</span><span class="toggle-knob"></span></span>
+      <span class="toggle-label" aria-hidden="true"></span>
+    </button>
+  </aside>
+
+  <main id="main">
+
+    <p class="kicker">Methodology</p>
+    <h1>How the system is built, and how it was tested</h1>
+    <p class="lede">
+      Three encoders, one per sensor, feed a shared fusion and temporal stage, which feeds three
+      task heads. Select any block to see what it does.
+    </p>
+
+    <h2 style="margin-top:1.4em">Architecture</h2>
+    <div class="arch-wrap">
+      <div class="chart" style="overflow-x:auto"><svg class="arch-diagram" viewBox="0 0 920 640" xmlns="http://www.w3.org/2000/svg" role="group" aria-label="Model architecture, select a block for details"><g class="arch-node" data-node="rgbin" aria-label="sRGB image"><rect x="20" y="20" width="180" height="50" rx="4" class="arch-box" stroke="var(--rgb-accent)"/><text x="110.0" y="43" text-anchor="middle" class="arch-label">sRGB image</text><text x="110.0" y="59" text-anchor="middle" class="arch-sublabel">224 &#215; 224, one per day</text></g><g class="arch-node" data-node="irin" aria-label="Thermal image"><rect x="370" y="20" width="180" height="50" rx="4" class="arch-box" stroke="var(--ir-accent)"/><text x="460.0" y="43" text-anchor="middle" class="arch-label">Thermal image</text><text x="460.0" y="59" text-anchor="middle" class="arch-sublabel">224 &#215; 224, one per day</text></g><g class="arch-node" data-node="gasin" aria-label="Methane readings"><rect x="720" y="20" width="180" height="50" rx="4" class="arch-box" stroke="var(--gas-accent)"/><text x="810.0" y="43" text-anchor="middle" class="arch-label">Methane readings</text><text x="810.0" y="59" text-anchor="middle" class="arch-sublabel">6 features, may be missing</text></g><path d="M110,70 L110,104" class="arch-arrow"/><polygon points="110,112 106,104 114,104" class="arch-arrowhead"/><path d="M460,70 L460,104" class="arch-arrow"/><polygon points="460,112 456,104 464,104" class="arch-arrowhead"/><path d="M810,70 L810,104" class="arch-arrow"/><polygon points="810,112 806,104 814,104" class="arch-arrowhead"/><g class="arch-node" data-node="rgbenc" aria-label="ConvNeXt-Tiny"><rect x="20" y="112" width="180" height="66" rx="4" class="arch-box" stroke="var(--rgb-accent)"/><text x="110.0" y="135" text-anchor="middle" class="arch-label">ConvNeXt-Tiny</text><text x="110.0" y="151" text-anchor="middle" class="arch-sublabel">+ CBAM attention</text><text x="110.0" y="167" text-anchor="middle" class="arch-sublabel">project to 64-d</text></g><g class="arch-node" data-node="irenc" aria-label="EfficientNet-B0"><rect x="370" y="112" width="180" height="66" rx="4" class="arch-box" stroke="var(--ir-accent)"/><text x="460.0" y="135" text-anchor="middle" class="arch-label">EfficientNet-B0</text><text x="460.0" y="151" text-anchor="middle" class="arch-sublabel">+ CBAM attention</text><text x="460.0" y="167" text-anchor="middle" class="arch-sublabel">project to 64-d</text></g><g class="arch-node" data-node="gasenc" aria-label="GRU-D"><rect x="720" y="112" width="180" height="66" rx="4" class="arch-box" stroke="var(--gas-accent)"/><text x="810.0" y="135" text-anchor="middle" class="arch-label">GRU-D</text><text x="810.0" y="151" text-anchor="middle" class="arch-sublabel">decay-aware recurrent</text><text x="810.0" y="167" text-anchor="middle" class="arch-sublabel">handles missing days</text></g><path d="M110,178 L110,210 Q110,228 300,242" class="arch-arrow"/><path d="M460,178 L460,237" class="arch-arrow"/><polygon points="460,245 456,237 464,237" class="arch-arrowhead"/><path d="M810,178 L810,210 Q810,228 620,242" class="arch-arrow"/><g class="arch-node" data-node="fusion" aria-label="Mask-gated cross-modal attention"><rect x="270" y="245" width="380" height="58" rx="4" class="arch-box" stroke="var(--ink-soft)"/><text x="460.0" y="272" text-anchor="middle" class="arch-label">Mask-gated cross-modal attention</text><text x="460.0" y="288" text-anchor="middle" class="arch-sublabel">missing sensors left out, not filled in</text></g><path d="M460,303 L460,334" class="arch-arrow"/><polygon points="460,342 456,334 464,334" class="arch-arrowhead"/><g class="arch-node" data-node="temporal" aria-label="Temporal Transformer"><rect x="270" y="342" width="380" height="58" rx="4" class="arch-box" stroke="var(--ink-soft)"/><text x="460.0" y="369" text-anchor="middle" class="arch-label">Temporal Transformer</text><text x="460.0" y="385" text-anchor="middle" class="arch-sublabel">reads the specimen's sequence of days</text></g><path d="M460,400 L460,422 Q460,436 175,448" class="arch-arrow"/><path d="M460,400 L460,444" class="arch-arrow"/><polygon points="460,452 456,444 464,444" class="arch-arrowhead"/><path d="M460,400 L460,422 Q460,436 750,448" class="arch-arrow"/><g class="arch-node" data-node="cls" aria-label="Classification head"><rect x="60" y="452" width="230" height="66" rx="4" class="arch-box" stroke="var(--ink-soft)"/><text x="175.0" y="475" text-anchor="middle" class="arch-label">Classification head</text><text x="175.0" y="491" text-anchor="middle" class="arch-sublabel">spoiled / not spoiled</text><text x="175.0" y="507" text-anchor="middle" class="arch-sublabel">test F1 0.80 &#183; AUC 0.73</text></g><g class="arch-node" data-node="reg" aria-label="Regression head"><rect x="345" y="452" width="230" height="66" rx="4" class="arch-box" stroke="var(--ink-soft)"/><text x="460.0" y="475" text-anchor="middle" class="arch-label">Regression head</text><text x="460.0" y="491" text-anchor="middle" class="arch-sublabel">days until spoilage</text><text x="460.0" y="507" text-anchor="middle" class="arch-sublabel">MAE 0.92 &#183; R&#178; 0.04</text></g><g class="arch-node" data-node="recon" aria-label="Gas reconstruction head"><rect x="630" y="452" width="230" height="66" rx="4" class="arch-box" stroke="var(--ink-soft)"/><text x="745.0" y="483" text-anchor="middle" class="arch-label">Gas reconstruction head</text><text x="745.0" y="499" text-anchor="middle" class="arch-sublabel">auxiliary, training only</text></g><path d="M175,518 L175,540 Q175,552 330,566" class="arch-arrow"/><path d="M460,518 L460,556" class="arch-arrow"/><polygon points="460,564 456,556 464,556" class="arch-arrowhead"/><path d="M745,518 L745,540 Q745,552 590,566" class="arch-arrow"/><g class="arch-node" data-node="loss" aria-label="Uncertainty-weighted multi-task loss"><rect x="270" y="564" width="380" height="52" rx="4" class="arch-box" stroke="var(--ink-soft)"/><text x="460.0" y="588" text-anchor="middle" class="arch-label">Uncertainty-weighted multi-task loss</text><text x="460.0" y="604" text-anchor="middle" class="arch-sublabel">task weights learned, not hand-tuned</text></g></svg></div>
+      <aside class="arch-panel" id="arch-panel" aria-live="polite"></aside>
+    </div>
+    <p class="small">
+      32.47 million parameters &middot; 39.03 GFLOPs per forward pass on a batch of four
+      trajectories &middot; 36.9 ms per batch on an Apple Silicon laptop.
+      <a href="assets/figures/fig1.svg">Open the detailed architecture figure</a>.
+    </p>
+
+    <h3>How a missing sensor is handled</h3>
+    <p>
+      For each day the three sensor embeddings become three tokens. Attention lets them inform each
+      other, and a key-padding mask removes any sensor that did not report that day. The fused
+      vector is the mean of the available tokens only, so a missing sensor never contributes a
+      placeholder value.
+    </p>
+<div class="eq"><math display="block"><mtable columnalign="right center left" rowspacing="0.9em">
+<mtr><mtd><msub><mi>T</mi><mi>t</mi></msub></mtd><mtd><mo>=</mo></mtd><mtd><mrow><mo>[</mo><msubsup><mi>v</mi><mi>t</mi><mtext>rgb</mtext></msubsup><mo rspace="0.35em">;</mo><msubsup><mi>v</mi><mi>t</mi><mtext>th</mtext></msubsup><mo rspace="0.35em">;</mo><msubsup><mi>v</mi><mi>t</mi><mtext>gas</mtext></msubsup><mo>]</mo><mo>&#8712;</mo><msup><mi>&#8477;</mi><mrow><mn>3</mn><mo>&#215;</mo><mi>d</mi></mrow></msup></mrow></mtd></mtr>
+<mtr><mtd><mrow><mo>(</mo><msub><mi>Z</mi><mi>t</mi></msub><mo>,</mo><msub><mi>&#945;</mi><mi>t</mi></msub><mo>)</mo></mrow></mtd><mtd><mo>=</mo></mtd><mtd><mrow><mtext>MultiHeadAttn</mtext><mo>(</mo><mi>Q</mi><mo>=</mo><msub><mi>T</mi><mi>t</mi></msub><mo>,</mo><mi>K</mi><mo>=</mo><msub><mi>T</mi><mi>t</mi></msub><mo>,</mo><mi>V</mi><mo>=</mo><msub><mi>T</mi><mi>t</mi></msub><mo rspace="0.35em">;</mo><mspace width="0.4em"/><mtext>mask</mtext><mo>=</mo><mo>&#172;</mo><msub><mtext>avail</mtext><mi>t</mi></msub><mo>)</mo></mrow></mtd></mtr>
+<mtr><mtd><msub><mi>z</mi><mi>t</mi></msub></mtd><mtd><mo>=</mo></mtd><mtd><mstyle displaystyle="true"><mrow><mfrac><mn>1</mn><mrow><mo>|</mo><msub><mi>A</mi><mi>t</mi></msub><mo>|</mo></mrow></mfrac><munder><mo>&#8721;</mo><mrow><mi>k</mi><mo>&#8712;</mo><msub><mi>A</mi><mi>t</mi></msub></mrow></munder><mtext>LayerNorm</mtext><msub><mrow><mo>(</mo><msub><mi>T</mi><mi>t</mi></msub><mo>+</mo><msub><mi>Z</mi><mi>t</mi></msub><mo>)</mo></mrow><mi>k</mi></msub></mrow></mstyle></mtd></mtr>
+</mtable></math>
+<p class="eq-key">A<sub>t</sub> is the set of sensors available on day t, each v<sub>t</sub> is a 64-dimensional sensor embedding, and the mask removes unavailable sensors from the attention keys.</p></div>
+
+    <h3>How gaps in the gas readings are handled</h3>
+    <p>
+      GRU-D keeps the elapsed time &delta;<sub>t</sub> since the last reading and a mask m<sub>t</sub>. When a
+      reading is missing it blends the last value with the training mean, and it learns how quickly
+      the old value should fade. The mask is also an input, so missingness itself is information.
+    </p>
+<div class="eq"><math display="block"><mtable columnalign="right center left" rowspacing="0.9em">
+<mtr><mtd><msub><mi>&#947;</mi><mi>x</mi></msub></mtd><mtd><mo>=</mo></mtd><mtd><mrow><mi>exp</mi><mo>(</mo><mo>&#8722;</mo><mi>max</mi><mo>(</mo><mn>0</mn><mo>,</mo><msub><mi>W</mi><mrow><mi>&#947;</mi><mi>x</mi></mrow></msub><msub><mi>&#948;</mi><mi>t</mi></msub><mo>+</mo><msub><mi>b</mi><mrow><mi>&#947;</mi><mi>x</mi></mrow></msub><mo>)</mo><mo>)</mo></mrow></mtd></mtr>
+<mtr><mtd><msub><mover><mi>x</mi><mo>^</mo></mover><mi>t</mi></msub></mtd><mtd><mo>=</mo></mtd><mtd><mrow><msub><mi>m</mi><mi>t</mi></msub><mo>&#8857;</mo><msub><mi>x</mi><mi>t</mi></msub><mo>+</mo><mo>(</mo><mn>1</mn><mo>&#8722;</mo><msub><mi>m</mi><mi>t</mi></msub><mo>)</mo><mo>&#8857;</mo><mo>(</mo><msub><mi>&#947;</mi><mi>x</mi></msub><mo>&#8857;</mo><msub><mi>x</mi><mrow><mi>t</mi><mo>&#8722;</mo><mn>1</mn></mrow></msub><mo>+</mo><mo>(</mo><mn>1</mn><mo>&#8722;</mo><msub><mi>&#947;</mi><mi>x</mi></msub><mo>)</mo><mo>&#8857;</mo><mover><mi>x</mi><mo>&#175;</mo></mover><mo>)</mo></mrow></mtd></mtr>
+<mtr><mtd><msub><mi>h</mi><mi>t</mi></msub></mtd><mtd><mo>=</mo></mtd><mtd><mrow><mtext>GRUCell</mtext><mo>(</mo><mo>[</mo><msub><mover><mi>x</mi><mo>^</mo></mover><mi>t</mi></msub><mo rspace="0.35em">;</mo><msub><mi>m</mi><mi>t</mi></msub><mo>]</mo><mo>,</mo><msub><mi>&#947;</mi><mi>h</mi></msub><mo>&#8857;</mo><msub><mi>h</mi><mrow><mi>t</mi><mo>&#8722;</mo><mn>1</mn></mrow></msub><mo>)</mo></mrow></mtd></mtr>
+</mtable></math>
+<p class="eq-key">&#948;<sub>t</sub> is the time since the last reading, m<sub>t</sub> is 1 when a reading exists, x&#772; is the training mean, and &#8857; is element-wise multiplication. &#947;<sub>h</sub> decays the hidden state the same way &#947;<sub>x</sub> decays the input.</p></div>
+
+    <h2>Training recipe</h2>
+    <div class="table-wrap">
+      <table class="data">
+        <tbody>
+          <tr><td>Optimiser</td><td class="left">AdamW, weight decay 1e-4, cosine schedule over 30 epochs</td></tr>
+          <tr><td>Learning rate</td><td class="left">1e-4; thermal backbone 1e-5</td></tr>
+          <tr><td>Batch size</td><td class="left">4 trajectories, gradient clipping at norm 1.0</td></tr>
+          <tr><td>Backbone unfreezing</td><td class="left">last block at epoch 6, last two at 8, all at 12</td></tr>
+          <tr><td>Regularisation</td><td class="left">dropout 0.5; one flipped and rotated (&plusmn;15&deg;) copy of each training trajectory</td></tr>
+          <tr><td>Class imbalance</td><td class="left">class weight 2.3 on spoiled; weighted random sampler</td></tr>
+          <tr><td>Seeds</td><td class="left">10 independent models (seeds 0&ndash;9), probabilities averaged</td></tr>
+          <tr><td>Threshold</td><td class="left">6-fold median over training + validation predictions: 0.660</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2>Evaluation approach</h2>
+    <p>
+      With 12 specimens, a single train/test number means little on its own. Four practices run
+      through every investigation.
+    </p>
+    <h4>The test set decides nothing</h4>
+    <p>
+      Architecture, hyperparameters and the decision threshold are all chosen without the test
+      set. Per-epoch thresholds are calibrated on training data, never on validation.
+    </p>
+    <h4>Paired bootstrap significance testing</h4>
+    <p>
+      Trajectories are resampled 10,000 times with the same indices for both models being
+      compared, giving a 95% interval and a p-value for their difference, not just two numbers.
+    </p>
+    <h4>Correction for many comparisons</h4>
+    <p>
+      29 pairwise comparisons are reported across the project, so a Benjamini&ndash;Hochberg false
+      discovery rate correction is applied across all of them.
+    </p>
+    <h4>A second, independent check</h4>
+    <p>
+      A six-fold cross-validation that retrains the model in every fold, a trivial always-spoiled
+      baseline, and two independently trained runs of the final model show how much of any
+      difference is ordinary training noise.
+    </p>
+
+    <h2 id="investigations">Investigations &amp; findings</h2>
+    <p>Roughly in the order they were carried out. Full numbers are on the <a href="results.html">Results page</a>.</p>
+    <ol class="sequence">
+      <li><span class="num">01</span><div>
+        <h4>Ablation study</h4>
+        <p>Seven configurations: the full model, four single-component ablations (no CBAM, no cross-attention, LSTM instead of Transformer, mean imputation instead of GRU-D) and two baselines (early and late fusion). Early and late fusion and the no-cross-attention variant scored 0.09&ndash;0.13 lower F1, while two simplified variants scored higher.</p>
+      </div></li>
+      <li><span class="num">02</span><div>
+        <h4>Bootstrap significance on the ablation</h4>
+        <p>None of the six alternatives differs significantly from the full model. The ranking in the raw ablation table is not something this sample size can support.</p>
+      </div></li>
+      <li><span class="num">03</span><div>
+        <h4>Backbone benchmark</h4>
+        <p>Eight sRGB backbones, including a frozen DINOv2. ConvNeXt-Tiny had the highest mean F1, but its margin is not significant, and EfficientNet-B0 came close at a fraction of the cost.</p>
+      </div></li>
+      <li><span class="num">04</span><div>
+        <h4>Missing-sensor robustness</h4>
+        <p>Each sensor, and all three jointly, switched off on 0&ndash;50% of days. The model kept the highest F1 in most single-sensor conditions; its advantage under gas and thermal failure survives correction, while sRGB failure hurts it most.</p>
+      </div></li>
+      <li><span class="num">05</span><div>
+        <h4>Leave-one-fruit-out generalisation</h4>
+        <p>Six folds, each holding out one produce type entirely. The ensemble got both held-out trajectories right in only 1 of 6 folds, the most serious limitation found.</p>
+      </div></li>
+      <li><span class="num">06</span><div>
+        <h4>Explainability: Grad-CAM, SHAP and attention</h4>
+        <p>All three test errors were borderline false alarms. Grad-CAM showed some attention on the background; SHAP showed the model relies on mean methane concentration; the gas sensor receives the least attention weight.</p>
+      </div></li>
+      <li><span class="num">07</span><div>
+        <h4>The CBAM question, resolved directly</h4>
+        <p>Grad-CAM raised the question of whether CBAM helps, so a model without CBAM on either camera was trained twice from scratch and evaluated on test. Both runs were worse on every test metric. The difference is not significant, so CBAM is kept on consistency across two runs.</p>
+      </div></li>
+      <li><span class="num">08</span><div>
+        <h4>Uncertainty quantification</h4>
+        <p>Bootstrap intervals for every headline metric and a six-fold retraining cross-validation. Intervals are wide, as expected from 11 test trajectories.</p>
+      </div></li>
+      <li><span class="num">09</span><div>
+        <h4>Shelf-life regression: diagnosis and three fixes</h4>
+        <p>The regression head (test R&sup2; 0.04) cannot even fit its training data, because tomato's timescale is an order of magnitude longer than the rest. Per-produce z-score, fraction of shelf life and log transform were each trained and tested; all three failed and lowered classification F1.</p>
+      </div></li>
+      <li><span class="num">10</span><div>
+        <h4>Capacity re-sweep</h4>
+        <p>Embedding size and dropout were searched again for the ConvNeXt-Tiny model. No setting beat the defaults (64-d, dropout 0.5) under the full ten-seed protocol, so they were kept.</p>
+      </div></li>
+    </ol>
+
+    <footer class="page-footer">
+      <p>School of Computing, Amrita Vishwa Vidyapeetham &middot; Sri Janani S &middot; Guide: Dr. Bagyammal T.</p>
+    </footer>
+  </main>
+</div>
+
+<script src="theme.js"></script>
+<script src="site.js"></script>
+</body>
+</html>

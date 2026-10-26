@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<script>
+  (function () {
+    var saved = null;
+    try { saved = localStorage.getItem('theme'); } catch (e) {}
+    var theme = saved || (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+    document.documentElement.setAttribute('data-theme', theme);
+  })();
+</script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Multimodal Fruit &amp; Vegetable Degradation Modelling</title>
+<meta name="description" content="A trimodal deep learning system that fuses sRGB images, thermal images and methane gas readings to detect spoilage in six fruits and vegetables, and keeps working when a sensor fails.">
+<meta property="og:title" content="Multimodal Fruit &amp; Vegetable Degradation Modelling">
+<meta property="og:description" content="A trimodal deep learning system that fuses sRGB images, thermal images and methane gas readings to detect spoilage in six fruits and vegetables, and keeps working when a sensor fails.">
+<meta property="og:image" content="assets/figures/dataset_samples.jpg">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3E%3Crect width='10' height='30' fill='%233F6B4A'/%3E%3Crect x='10' width='10' height='30' fill='%23C1502E'/%3E%3Crect x='20' width='10' height='30' fill='%233E5C99'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=IBM+Plex+Mono:wght@300;400;500&family=IBM+Plex+Serif:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<div class="tri-band"><span class="b-rgb"></span><span class="b-ir"></span><span class="b-gas"></span></div>
+
+<div class="shell">
+  <aside class="sidebar">
+    <div class="sidebar-head">
+      <div>
+        <a href="index.html" class="sidebar-brand">Multimodal Degradation Modelling</a>
+        <div class="sidebar-tagline">Sensing spoilage across sight, heat, and gas</div>
+      </div>
+      <button class="menu-toggle" type="button" aria-expanded="false">Menu</button>
+    </div>
+    <nav aria-label="Site">
+      <div class="sidebar-group">
+        <a href="index.html" class="nav-link active" aria-current="page">Home</a>
+        <a href="objectives.html" class="nav-link">Objectives &amp; Problem</a>
+      </div>
+      <div class="sidebar-group">
+        <div class="sidebar-group-label">Methodology</div>
+        <a href="methodology.html" class="nav-link">Architecture</a>
+        <a href="methodology.html#investigations" class="nav-link">Investigations &amp; Findings</a>
+      </div>
+      <div class="sidebar-group">
+        <a href="dataset.html" class="nav-link">Dataset</a>
+        <a href="results.html" class="nav-link">Results</a>
+        <a href="progress.html" class="nav-link">Progress</a>
+        <a href="documentation.html" class="nav-link">Documentation</a>
+      </div>
+      <div class="sidebar-group">
+        <a href="team.html" class="nav-link">Team</a>
+        <a href="https://github.com/srijanani2073/multimodal-fruit-spoilage-detection" class="nav-link">GitHub Repository</a>
+        <a href="documentation.html#demos" class="nav-link">Demonstrations</a>
+      </div>
+    </nav>
+    <button class="theme-toggle" type="button" aria-label="Toggle light and dark mode">
+      <span class="toggle-track" aria-hidden="true"><span class="toggle-icon toggle-sun">&#9728;</span><span class="toggle-icon toggle-moon">&#9789;</span><span class="toggle-knob"></span></span>
+      <span class="toggle-label" aria-hidden="true"></span>
+    </button>
+  </aside>
+
+  <main id="main">
+
+    <p class="kicker">M.Tech Thesis Project &middot; School of Computing, Amrita Vishwa Vidyapeetham</p>
+    <h1>Can a machine tell that your produce is going bad, before it looks spoiled?</h1>
+    <p class="lede">
+      A trimodal deep learning system that fuses ordinary photographs, thermal imaging, and a
+      methane gas sensor to detect spoilage in six fruit and vegetable types, keeps working when a
+      sensor drops out, and is evaluated with the statistical rigor a twelve-specimen dataset
+      actually demands.
+    </p>
+
+    <div style="margin: 2rem 0 3rem;">
+      <a href="objectives.html" class="btn primary">Read the problem statement</a>
+      <a href="results.html" class="btn" style="margin-left: 0.8rem;">Jump to results</a>
+    </div>
+
+    <hr class="rule">
+
+    <h2>Three senses, one judgment</h2>
+    <p>
+      A person checking whether a mango has turned uses more than their eyes: they might press
+      it, smell it, feel its temperature. Most automated spoilage detectors use only a camera.
+      This project asks what changes when a model can draw on three different physical channels
+      at once, and how much of that promise actually survives contact with a small, real
+      dataset.
+    </p>
+
+    <div class="metric-strip">
+      <div class="metric">
+        <span class="tag rgb"><span class="dot"></span>RGB</span>
+        <span class="label">ConvNeXt-Tiny + CBAM, visible-light surface texture and colour</span>
+      </div>
+      <div class="metric">
+        <span class="tag ir"><span class="dot"></span>Thermal</span>
+        <span class="label">EfficientNet-B0 + CBAM, heat signatures invisible to the eye</span>
+      </div>
+      <div class="metric">
+        <span class="tag gas"><span class="dot"></span>Gas</span>
+        <span class="label">GRU-D over methane readings, the chemical signal of decay</span>
+      </div>
+    </div>
+
+    <p>
+      Here is one TR-6 specimen through all three channels. Switch between them, or between the
+      fresh and the spoiled banana.
+    </p>
+
+    <div class="specimen" data-mode="rgb">
+      <div class="specimen-head">
+        <span><b>Banana</b> &middot; TR-6 specimen</span>
+        <span class="specimen-state seg" role="group" aria-label="Specimen label">
+          <button type="button" data-cls="notspoiled" aria-pressed="true">Fresh</button>
+          <button type="button" data-cls="spoiled" aria-pressed="false">Spoiled</button>
+        </span>
+      </div>
+      <div class="specimen-view">
+        <img class="layer-rgb" src="assets/dataset/banana_notspoiled_rgb.jpg" alt="Banana photographed with the sRGB camera">
+        <img class="layer-ir" src="assets/dataset/banana_notspoiled_ir.jpg" alt="The same banana seen by the thermal camera">
+        <span class="chan">sRGB camera</span>
+      </div>
+      <div class="specimen-gaslist specimen-gas" hidden>
+        <div class="row"><span>Methane sensor, six features per day</span><span>ppm</span></div>
+        <table class="data" style="margin:0.6rem 0 0.4rem">
+          <tbody>
+            <tr><td>Mean concentration</td><td>x&#8321;</td></tr>
+            <tr><td>Spread within the session</td><td>x&#8322;</td></tr>
+            <tr><td>Left sensor / right sensor</td><td>x&#8323;, x&#8324;</td></tr>
+            <tr><td>Left&ndash;right asymmetry</td><td>x&#8325;</td></tr>
+            <tr><td>Session (morning, afternoon, evening)</td><td>x&#8326;</td></tr>
+          </tbody>
+        </table>
+        <p class="small">Days with no reading are passed to GRU-D with a mask instead of a made-up value.</p>
+      </div>
+      <div class="specimen-foot" role="group" aria-label="Sensor">
+        <button type="button" class="rgb" data-mode="rgb" aria-pressed="true">sRGB</button>
+        <button type="button" class="ir" data-mode="ir" aria-pressed="false">Thermal</button>
+        <button type="button" class="gas" data-mode="gas" aria-pressed="false">Gas</button>
+      </div>
+      <div class="specimen-verdict">
+        <span>This day is labelled <b class="specimen-label">not spoiled</b></span>
+        <span class="muted">real TR-6 images</span>
+      </div>
+    </div>
+
+    <p>
+      A mask-gated cross-modal attention layer and a temporal Transformer fuse these three
+      streams across a specimen's observed history, leaving out any sensor that did not report
+      on a given day, and produce both a spoiled / not-spoiled classification and a
+      days-until-spoilage estimate.
+    </p>
+
+    <hr class="rule">
+
+    <h2>Pull a sensor</h2>
+    <p>
+      Real sensors fail: gas sensors drift, thermal cameras fog up in humid storage, images get
+      lost. Pick a sensor and drag the slider to switch it off on more and more days. The bars are
+      real validation F1-scores from the robustness sweep (10 seeds &times; 5 random repeats each).
+    </p>
+    <div class="dropout" id="dropout">
+      <div class="sensors" role="group" aria-label="Sensor to switch off">
+        <button type="button" class="sensor rgb" data-pattern="rgb"><span class="led"></span>sRGB camera</button>
+        <button type="button" class="sensor ir" data-pattern="ir"><span class="led"></span>Thermal camera</button>
+        <button type="button" class="sensor gas" data-pattern="gas" aria-pressed="true"><span class="led"></span>Gas sensor</button>
+        <button type="button" class="sensor" data-pattern="joint" style="--c: var(--ink-soft)"><span class="led"></span>All three</button>
+      </div>
+      <label class="dropout-slider" for="dropout-range">Days with the sensor off
+        <input id="dropout-range" type="range" min="0" max="50" step="10" value="0">
+        <output for="dropout-range">0%</output>
+      </label>
+      <div class="race">
+        <div class="race-row full"><span>Proposed model</span><span class="race-track"><span></span></span><span class="rv">0.693</span></div>
+        <div class="race-row early"><span>Early fusion</span><span class="race-track"><span></span></span><span class="rv">0.637</span></div>
+        <div class="race-row late"><span>Late fusion</span><span class="race-track"><span></span></span><span class="rv">0.605</span></div>
+      </div>
+      <p class="race-note">All sensors working. Drag the slider to switch the gas sensor off on more and more days.</p>
+      <p class="small muted" style="margin:0">Bar length shows F1 from 0.50 to 0.75. Full statistics and the test-set version are on the <a href="results.html#robustness">Results page</a>.</p>
+    </div>
+
+    <hr class="rule">
+
+    <h2>What the evaluation actually found</h2>
+    <p>
+      Twelve specimens is not a lot of evidence. Most of this project's effort went into finding
+      out which apparent findings were real and which were artefacts of that small sample, not
+      just reporting the headline number.
+    </p>
+
+    <table class="data">
+      <caption>Final test-set result, full model (10-seed ensemble)</caption>
+      <thead>
+        <tr><th>F1</th><th>AUC</th><th>MAE (days)</th><th>RMSE (days)</th><th>R&sup2;</th></tr>
+      </thead>
+      <tbody>
+        <tr><td class="best">0.8000</td><td>0.7333</td><td>0.9188</td><td>1.0593</td><td>0.0439</td></tr>
+      </tbody>
+    </table>
+
+    <div class="callout finding">
+      <div class="callout-label">What held up</div>
+      <p>
+        All six spoiled test trajectories were detected. With a sensor switched off on up to half
+        of the days, the model kept the highest F1 in most single-sensor conditions, and its
+        advantage under gas-sensor and thermal-camera failure stayed significant after correcting
+        for all 29 comparisons.
+      </p>
+    </div>
+
+    <div class="callout limitation">
+      <div class="callout-label">What did not</div>
+      <p>
+        No individual component could be shown to matter at this sample size. The model
+        generalises to a completely unseen produce type in only 1 of 6 leave-one-fruit-out folds,
+        and three separate attempts to fix the shelf-life regression head all failed. Both are
+        reported in full on the Results page, not omitted.
+      </p>
+    </div>
+
+    <p>
+      <a href="methodology.html#investigations">See how each of these was actually tested, in the investigations log on the Methodology page.</a>
+      Or try switching a sensor off yourself in the <a href="results.html#robustness">robustness explorer</a>.
+    </p>
+
+    <hr class="rule">
+
+    <h2>Project at a glance</h2>
+    <div class="table-wrap">
+      <table class="data glance">
+        <tbody>
+          <tr><td>Problem statement</td><td class="left">Detect spoilage from sight, heat and gas when any sensor may be missing</td><td class="left"><a href="objectives.html">Objectives &amp; Problem</a></td></tr>
+          <tr><td>Objectives</td><td class="left">Six objectives, from trimodal fusion to honest reporting</td><td class="left"><a href="objectives.html#objectives">Objectives</a></td></tr>
+          <tr><td>Methodology</td><td class="left">Clickable architecture, equations, training recipe, investigation log</td><td class="left"><a href="methodology.html">Methodology</a></td></tr>
+          <tr><td>Dataset</td><td class="left">TR-6 gallery for every class, splits and timescales</td><td class="left"><a href="dataset.html">Dataset</a></td></tr>
+          <tr><td>Results</td><td class="left">Test performance, robustness explorer, ablation, generalisation</td><td class="left"><a href="results.html">Results</a></td></tr>
+          <tr><td>Progress</td><td class="left">Nine phases, from data pipeline to dissemination</td><td class="left"><a href="progress.html">Progress</a></td></tr>
+          <tr><td>Documentation</td><td class="left">Notebook pipeline, how to reproduce, how to cite</td><td class="left"><a href="documentation.html">Documentation</a></td></tr>
+          <tr><td>Demonstrations</td><td class="left">Four captioned walkthrough videos</td><td class="left"><a href="documentation.html#demos">Demonstrations</a></td></tr>
+          <tr><td>Code</td><td class="left">Notebooks and pipeline on GitHub</td><td class="left"><a href="https://github.com/srijanani2073/multimodal-fruit-spoilage-detection">GitHub repository</a></td></tr>
+          <tr><td>Team</td><td class="left">Sri Janani S, guided by Dr. Bagyammal T.</td><td class="left"><a href="team.html">Team</a></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <hr class="rule">
+
+    <h2>Built on TR-6</h2>
+    <p>
+      Six fruit and vegetable types (banana, carrot, guava, Indian gooseberry, mango, and tomato),
+      each tracked daily across synchronised sRGB, thermal, and gas-sensor readings from fresh
+      through spoiled. Browse every class through both cameras on the
+      <a href="dataset.html">Dataset page</a>.
+    </p>
+
+    <footer class="page-footer">
+      <p>School of Computing, Amrita Vishwa Vidyapeetham &middot; Sri Janani S &middot; Guide: Dr. Bagyammal T.</p>
+    </footer>
+  </main>
+</div>
+
+<script src="theme.js"></script>
+<script src="site.js"></script>
+</body>
+</html>

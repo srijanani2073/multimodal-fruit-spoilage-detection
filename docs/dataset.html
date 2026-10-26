@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<script>
+  (function () {
+    var saved = null;
+    try { saved = localStorage.getItem('theme'); } catch (e) {}
+    var theme = saved || (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+    document.documentElement.setAttribute('data-theme', theme);
+  })();
+</script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dataset &middot; Multimodal Fruit &amp; Vegetable Degradation Modelling</title>
+<meta name="description" content="The TriModal Ripeness 6 dataset: synchronised sRGB, thermal and methane recordings of six fruits and vegetables from fresh to spoiled.">
+<meta property="og:title" content="Dataset &middot; Multimodal Fruit &amp; Vegetable Degradation Modelling">
+<meta property="og:description" content="The TriModal Ripeness 6 dataset: synchronised sRGB, thermal and methane recordings of six fruits and vegetables from fresh to spoiled.">
+<meta property="og:image" content="assets/figures/dataset_samples.jpg">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3E%3Crect width='10' height='30' fill='%233F6B4A'/%3E%3Crect x='10' width='10' height='30' fill='%23C1502E'/%3E%3Crect x='20' width='10' height='30' fill='%233E5C99'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=IBM+Plex+Mono:wght@300;400;500&family=IBM+Plex+Serif:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<div class="tri-band"><span class="b-rgb"></span><span class="b-ir"></span><span class="b-gas"></span></div>
+
+<div class="shell">
+  <aside class="sidebar">
+    <div class="sidebar-head">
+      <div>
+        <a href="index.html" class="sidebar-brand">Multimodal Degradation Modelling</a>
+        <div class="sidebar-tagline">Sensing spoilage across sight, heat, and gas</div>
+      </div>
+      <button class="menu-toggle" type="button" aria-expanded="false">Menu</button>
+    </div>
+    <nav aria-label="Site">
+      <div class="sidebar-group">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="objectives.html" class="nav-link">Objectives &amp; Problem</a>
+      </div>
+      <div class="sidebar-group">
+        <div class="sidebar-group-label">Methodology</div>
+        <a href="methodology.html" class="nav-link">Architecture</a>
+        <a href="methodology.html#investigations" class="nav-link">Investigations &amp; Findings</a>
+      </div>
+      <div class="sidebar-group">
+        <a href="dataset.html" class="nav-link active" aria-current="page">Dataset</a>
+        <a href="results.html" class="nav-link">Results</a>
+        <a href="progress.html" class="nav-link">Progress</a>
+        <a href="documentation.html" class="nav-link">Documentation</a>
+      </div>
+      <div class="sidebar-group">
+        <a href="team.html" class="nav-link">Team</a>
+        <a href="https://github.com/srijanani2073/multimodal-fruit-spoilage-detection" class="nav-link">GitHub Repository</a>
+        <a href="documentation.html#demos" class="nav-link">Demonstrations</a>
+      </div>
+    </nav>
+    <button class="theme-toggle" type="button" aria-label="Toggle light and dark mode">
+      <span class="toggle-track" aria-hidden="true"><span class="toggle-icon toggle-sun">&#9728;</span><span class="toggle-icon toggle-moon">&#9789;</span><span class="toggle-knob"></span></span>
+      <span class="toggle-label" aria-hidden="true"></span>
+    </button>
+  </aside>
+
+  <main id="main">
+
+    <p class="kicker">Dataset</p>
+    <h1>TR-6: six produce types, three sensors, fresh to spoiled</h1>
+    <p class="lede">
+      The TriModal Ripeness 6 dataset follows individual fruits and vegetables day by day as they
+      degrade after harvest, recording each one with a colour camera, a thermal camera and a
+      methane gas sensor.
+    </p>
+
+    <div class="metric-strip banner" role="list">
+      <div class="metric" role="listitem"><span class="value">6</span><span class="label">Produce types</span></div>
+      <div class="metric" role="listitem"><span class="value">12</span><span class="label">Trajectories (one fresh, one spoiling specimen per type)</span></div>
+      <div class="metric" role="listitem"><span class="value">112</span><span class="label">Day-level entries</span></div>
+      <div class="metric" role="listitem"><span class="value">10,796</span><span class="label">Raw images (5,338 sRGB + 5,458 thermal)</span></div>
+    </div>
+
+    <section id="gallery">
+      <h2 style="margin-top:1.5em">Every class, through both cameras</h2>
+      <p>
+        Pick a produce type to see a not-spoiled and a spoiled sample. Drag across an image to slide
+        between what the colour camera sees and what the thermal camera sees for the same specimen.
+      </p>
+      <div class="gallery-tabs" role="group" aria-label="Produce type"></div>
+      <div class="class-pair"></div>
+      <div class="fruit-facts"></div>
+      <p class="fruit-note small" style="margin-top:0.9rem"></p>
+    </section>
+
+    <h3>All twelve classes at a glance</h3>
+    <p class="small">Left thumbnail: not spoiled. Right thumbnail: spoiled. Select one to open it above.</p>
+    <div class="contact">
+        <button type="button" data-id="banana" aria-label="Show Banana"><span class="thumbs"><span style="--img:url(assets/dataset/banana_notspoiled_rgb.jpg)"></span><span style="--img:url(assets/dataset/banana_spoiled_rgb.jpg)"></span></span><span class="cn">Banana</span></button>
+        <button type="button" data-id="carrot" aria-label="Show Carrot"><span class="thumbs"><span style="--img:url(assets/dataset/carrot_notspoiled_rgb.jpg)"></span><span style="--img:url(assets/dataset/carrot_spoiled_rgb.jpg)"></span></span><span class="cn">Carrot</span></button>
+        <button type="button" data-id="guava" aria-label="Show Guava"><span class="thumbs"><span style="--img:url(assets/dataset/guava_notspoiled_rgb.jpg)"></span><span style="--img:url(assets/dataset/guava_spoiled_rgb.jpg)"></span></span><span class="cn">Guava</span></button>
+        <button type="button" data-id="indian_gooseberry" aria-label="Show Indian gooseberry"><span class="thumbs"><span style="--img:url(assets/dataset/indian_gooseberry_notspoiled_rgb.jpg)"></span><span style="--img:url(assets/dataset/indian_gooseberry_spoiled_rgb.jpg)"></span></span><span class="cn">Indian gooseberry</span></button>
+        <button type="button" data-id="mango" aria-label="Show Mango"><span class="thumbs"><span style="--img:url(assets/dataset/mango_notspoiled_rgb.jpg)"></span><span style="--img:url(assets/dataset/mango_spoiled_rgb.jpg)"></span></span><span class="cn">Mango</span></button>
+        <button type="button" data-id="tomato" aria-label="Show Tomato"><span class="thumbs"><span style="--img:url(assets/dataset/tomato_notspoiled_rgb.jpg)"></span><span style="--img:url(assets/dataset/tomato_spoiled_rgb.jpg)"></span></span><span class="cn">Tomato</span></button>
+    </div>
+
+    <hr class="rule">
+
+    <h2>What was recorded</h2>
+    <p>
+      Each specimen was photographed and thermally imaged in three sessions a day (morning,
+      afternoon and evening) and its methane emission was measured in the same sessions, from a
+      fresh starting condition until it was judged spoiled. For modelling, the sessions of a day
+      are combined into one day-level entry, and the days of a specimen form a trajectory.
+    </p>
+    <div class="metric-strip">
+      <div class="metric">
+        <span class="tag rgb"><span class="dot"></span>sRGB</span>
+        <span class="label">Colour photographs, resized to 224 &times; 224 for the model</span>
+      </div>
+      <div class="metric">
+        <span class="tag ir"><span class="dot"></span>Thermal</span>
+        <span class="label">Infrared fusion images on the same session schedule</span>
+      </div>
+      <div class="metric">
+        <span class="tag gas"><span class="dot"></span>Gas</span>
+        <span class="label">Methane in ppm: mean, spread, left and right sensor</span>
+      </div>
+    </div>
+    <p>
+      111 of the 112 day-level entries have all three modalities; the remaining one has both
+      images but no gas reading. Individual sessions are missing more often (up to about 10% of
+      evening sessions), which is why the gas encoder is built to handle gaps and the fusion layer
+      can leave a sensor out.
+    </p>
+
+    <h2>Six produce types, six very different timescales</h2>
+    <div class="table-wrap">
+      <table class="data">
+        <caption>Day-level entries, labels, splits and days until spoilage by produce type</caption>
+        <thead>
+          <tr><th>Produce</th><th>Days</th><th>Not spoiled</th><th>Spoiled</th><th>Train</th><th>Val</th><th>Test</th><th>Mean days left</th><th>Std. dev.</th><th>Range</th></tr>
+        </thead>
+        <tbody>
+            <tr><td>Banana</td><td>7</td><td>3</td><td>4</td><td>3</td><td>2</td><td>2</td><td>1.29</td><td>1.70</td><td>0&ndash;4</td></tr>
+            <tr><td>Carrot</td><td>9</td><td>2</td><td>7</td><td>6</td><td>2</td><td>1</td><td>0.56</td><td>1.13</td><td>0&ndash;3</td></tr>
+            <tr><td>Guava</td><td>10</td><td>4</td><td>6</td><td>6</td><td>2</td><td>2</td><td>1.40</td><td>1.96</td><td>0&ndash;5</td></tr>
+            <tr><td>Indian gooseberry</td><td>30</td><td>18</td><td>12</td><td>21</td><td>5</td><td>4</td><td>6.70</td><td>7.35</td><td>0&ndash;21</td></tr>
+            <tr><td>Mango</td><td>8</td><td>5</td><td>3</td><td>4</td><td>2</td><td>2</td><td>3.75</td><td>3.54</td><td>0&ndash;9</td></tr>
+            <tr><td>Tomato</td><td>48</td><td>44</td><td>4</td><td>33</td><td>8</td><td>7</td><td class="worst">31.33</td><td>22.00</td><td>0&ndash;65</td></tr>
+            <tr class="total"><td>Total</td><td>112</td><td>76</td><td>36</td><td>73</td><td>21</td><td>18</td><td></td><td></td><td></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="two-col">
+      <div>
+        <h3 style="margin-top:0.5em">Label balance</h3>
+        <div class="legend"><span><i class="seg-fresh"></i>Not spoiled</span><span><i class="seg-spoiled"></i>Spoiled</span></div>
+        <div class="bars">
+        <div class="bar-row"><span class="bn">Banana</span><span class="bar-track"><span class="seg-fresh" style="width:6.25%"></span><span class="seg-spoiled" style="width:8.33%"></span></span><span class="bv">7</span></div>
+        <div class="bar-row"><span class="bn">Carrot</span><span class="bar-track"><span class="seg-fresh" style="width:4.17%"></span><span class="seg-spoiled" style="width:14.58%"></span></span><span class="bv">9</span></div>
+        <div class="bar-row"><span class="bn">Guava</span><span class="bar-track"><span class="seg-fresh" style="width:8.33%"></span><span class="seg-spoiled" style="width:12.50%"></span></span><span class="bv">10</span></div>
+        <div class="bar-row"><span class="bn">Indian gooseberry</span><span class="bar-track"><span class="seg-fresh" style="width:37.50%"></span><span class="seg-spoiled" style="width:25.00%"></span></span><span class="bv">30</span></div>
+        <div class="bar-row"><span class="bn">Mango</span><span class="bar-track"><span class="seg-fresh" style="width:10.42%"></span><span class="seg-spoiled" style="width:6.25%"></span></span><span class="bv">8</span></div>
+        <div class="bar-row"><span class="bn">Tomato</span><span class="bar-track"><span class="seg-fresh" style="width:91.67%"></span><span class="seg-spoiled" style="width:8.33%"></span></span><span class="bv">48</span></div>
+        </div>
+        <p class="small">32.1% of all day-level entries are spoiled. Training compensates with a class weight of 2.3 and a balanced sampler.</p>
+      </div>
+      <div>
+        <h3 style="margin-top:0.5em">Split of each produce's days</h3>
+        <div class="legend"><span><i class="seg-train"></i>Train</span><span><i class="seg-val"></i>Validation</span><span><i class="seg-test"></i>Test</span></div>
+        <div class="bars">
+        <div class="bar-row"><span class="bn">Banana</span><span class="bar-track"><span class="seg-train" style="width:6.25%"></span><span class="seg-val" style="width:4.17%"></span><span class="seg-test" style="width:4.17%"></span></span><span class="bv">7</span></div>
+        <div class="bar-row"><span class="bn">Carrot</span><span class="bar-track"><span class="seg-train" style="width:12.50%"></span><span class="seg-val" style="width:4.17%"></span><span class="seg-test" style="width:2.08%"></span></span><span class="bv">9</span></div>
+        <div class="bar-row"><span class="bn">Guava</span><span class="bar-track"><span class="seg-train" style="width:12.50%"></span><span class="seg-val" style="width:4.17%"></span><span class="seg-test" style="width:4.17%"></span></span><span class="bv">10</span></div>
+        <div class="bar-row"><span class="bn">Indian gooseberry</span><span class="bar-track"><span class="seg-train" style="width:43.75%"></span><span class="seg-val" style="width:10.42%"></span><span class="seg-test" style="width:8.33%"></span></span><span class="bv">30</span></div>
+        <div class="bar-row"><span class="bn">Mango</span><span class="bar-track"><span class="seg-train" style="width:8.33%"></span><span class="seg-val" style="width:4.17%"></span><span class="seg-test" style="width:4.17%"></span></span><span class="bv">8</span></div>
+        <div class="bar-row"><span class="bn">Tomato</span><span class="bar-track"><span class="seg-train" style="width:68.75%"></span><span class="seg-val" style="width:16.67%"></span><span class="seg-test" style="width:14.58%"></span></span><span class="bv">48</span></div>
+        </div>
+        <p class="small">73 training, 21 validation and 18 test day-level entries in total.</p>
+      </div>
+    </div>
+
+    <div class="callout limitation">
+      <div class="callout-label">Why the regression task is hard</div>
+      <p>
+        Tomato's mean of 31.33 days until spoilage is about 4.5 times that of the next produce, and
+        its range of 0&ndash;65 days dwarfs the others. One regression head has to fit all six scales
+        at once. Three target rescalings were tried; none helped, and all of them hurt
+        classification. Details are on the <a href="results.html#regression">Results page</a>.
+      </p>
+    </div>
+
+    <hr class="rule">
+
+    <h2>How the data is split</h2>
+    <p>
+      Splits are made per (produce, label) stratum and in time order: the earliest 70% of a
+      specimen's days go to training, the next 15% to validation and the most recent 15% to
+      testing. The model therefore never trains on a day that comes after a day it is tested on.
+    </p>
+    <div class="chrono" aria-label="Chronological split of one specimen's days">
+      <span class="seg-train" style="width:70%">Train &middot; earliest 70% of days</span>
+      <span class="seg-val" style="width:15%">Val</span>
+      <span class="seg-test" style="width:15%">Test</span>
+    </div>
+    <div class="chrono-axis"><span>first day observed</span><span>day judged spoiled</span></div>
+    <div class="callout note">
+      <div class="callout-label">What this means for the results</div>
+      <p>
+        Every split contains days from every specimen, so the headline test score measures how
+        well the model handles later days of specimens it has partly seen. Generalising to a
+        completely new produce type is tested separately with leave-one-fruit-out, where results
+        are much weaker. The not-spoiled carrot has only two days, so it has no test day, and the
+        test set covers 11 of the 12 trajectories.
+      </p>
+    </div>
+
+    <h2>Labels</h2>
+    <p>
+      Each day-level entry carries a binary spoiled / not-spoiled label and a days-until-spoilage
+      value counted back from the day the specimen was judged spoiled. The model classifies a whole
+      trajectory using its last day, so each test trajectory counts once however many days it has.
+    </p>
+
+    <h2>Source</h2>
+    <p>
+      Unnikrishnan, D., Deepak, K., P T S, Y. A., and T, B. (2026). Multimodal perishable fruits
+      and vegetables dataset. <em>Data in Brief</em>. doi:10.1016/j.dib.2026.112545.
+      The data is publicly available on
+      <a href="https://doi.org/10.6084/m9.figshare.30783827">figshare</a>.
+    </p>
+
+    <footer class="page-footer">
+      <p>School of Computing, Amrita Vishwa Vidyapeetham &middot; Sri Janani S &middot; Guide: Dr. Bagyammal T.</p>
+    </footer>
+  </main>
+</div>
+
+<script src="theme.js"></script>
+<script src="site.js"></script>
+</body>
+</html>

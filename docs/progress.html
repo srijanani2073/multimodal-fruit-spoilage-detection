@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<script>
+  (function () {
+    var saved = null;
+    try { saved = localStorage.getItem('theme'); } catch (e) {}
+    var theme = saved || (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+    document.documentElement.setAttribute('data-theme', theme);
+  })();
+</script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Progress &middot; Multimodal Fruit &amp; Vegetable Degradation Modelling</title>
+<meta name="description" content="How the trimodal spoilage project unfolded, phase by phase, from the data pipeline to dissemination.">
+<meta property="og:title" content="Progress &middot; Multimodal Fruit &amp; Vegetable Degradation Modelling">
+<meta property="og:description" content="How the trimodal spoilage project unfolded, phase by phase, from the data pipeline to dissemination.">
+<meta property="og:image" content="assets/figures/dataset_samples.jpg">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3E%3Crect width='10' height='30' fill='%233F6B4A'/%3E%3Crect x='10' width='10' height='30' fill='%23C1502E'/%3E%3Crect x='20' width='10' height='30' fill='%233E5C99'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=IBM+Plex+Mono:wght@300;400;500&family=IBM+Plex+Serif:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<div class="tri-band"><span class="b-rgb"></span><span class="b-ir"></span><span class="b-gas"></span></div>
+
+<div class="shell">
+  <aside class="sidebar">
+    <div class="sidebar-head">
+      <div>
+        <a href="index.html" class="sidebar-brand">Multimodal Degradation Modelling</a>
+        <div class="sidebar-tagline">Sensing spoilage across sight, heat, and gas</div>
+      </div>
+      <button class="menu-toggle" type="button" aria-expanded="false">Menu</button>
+    </div>
+    <nav aria-label="Site">
+      <div class="sidebar-group">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="objectives.html" class="nav-link">Objectives &amp; Problem</a>
+      </div>
+      <div class="sidebar-group">
+        <div class="sidebar-group-label">Methodology</div>
+        <a href="methodology.html" class="nav-link">Architecture</a>
+        <a href="methodology.html#investigations" class="nav-link">Investigations &amp; Findings</a>
+      </div>
+      <div class="sidebar-group">
+        <a href="dataset.html" class="nav-link">Dataset</a>
+        <a href="results.html" class="nav-link">Results</a>
+        <a href="progress.html" class="nav-link active" aria-current="page">Progress</a>
+        <a href="documentation.html" class="nav-link">Documentation</a>
+      </div>
+      <div class="sidebar-group">
+        <a href="team.html" class="nav-link">Team</a>
+        <a href="https://github.com/srijanani2073/multimodal-fruit-spoilage-detection" class="nav-link">GitHub Repository</a>
+        <a href="documentation.html#demos" class="nav-link">Demonstrations</a>
+      </div>
+    </nav>
+    <button class="theme-toggle" type="button" aria-label="Toggle light and dark mode">
+      <span class="toggle-track" aria-hidden="true"><span class="toggle-icon toggle-sun">&#9728;</span><span class="toggle-icon toggle-moon">&#9789;</span><span class="toggle-knob"></span></span>
+      <span class="toggle-label" aria-hidden="true"></span>
+    </button>
+  </aside>
+
+  <main id="main">
+
+    <p class="kicker">Progress</p>
+    <h1>How the project unfolded</h1>
+    <p class="lede">
+      The project in nine phases, in the order the work was done, from the data pipeline to the
+      thesis and this website.
+    </p>
+
+    <div class="metric-strip banner">
+      <div class="metric"><span class="value">14</span><span class="label">Numbered notebooks in the pipeline</span></div>
+      <div class="metric"><span class="value">9/9</span><span class="label">Research phases complete</span></div>
+      <div class="metric"><span class="value">29</span><span class="label">Statistical comparisons, all corrected</span></div>
+    </div>
+
+    <div class="timeline">
+      <div class="phase done">
+        <div class="phase-header"><span class="phase-title">Phase 1: Foundation</span><span class="phase-status">Complete</span><span class="phase-notebooks">01 &middot; 02 &middot; 03</span></div>
+        <ul class="phase-milestones">
+          <li>Data pipeline and manifests built for TR-6</li>
+          <li>Dataset composition, missingness and class balance analysed</li>
+          <li>CBAM visual encoders and the GRU-D gas encoder developed and checked one at a time</li>
+        </ul>
+      </div>
+      <div class="phase done">
+        <div class="phase-header"><span class="phase-title">Phase 2: Core architecture</span><span class="phase-status">Complete</span><span class="phase-notebooks">04</span></div>
+        <ul class="phase-milestones">
+          <li>Trimodal fusion model implemented: ConvNeXt-Tiny and EfficientNet-B0 with CBAM, GRU-D, mask-gated cross-modal attention, temporal Transformer</li>
+          <li>Ten-seed ensemble and k-fold median threshold calibration</li>
+          <li>Headline result: test F1 0.80, AUC 0.73</li>
+        </ul>
+      </div>
+      <div class="phase done">
+        <div class="phase-header"><span class="phase-title">Phase 3: Rigorous evaluation</span><span class="phase-status">Complete</span><span class="phase-notebooks">05 &middot; 06 &middot; 07</span></div>
+        <ul class="phase-milestones">
+          <li>Seven-configuration ablation study</li>
+          <li>Paired bootstrap significance testing of the ablation</li>
+          <li>Eight-candidate backbone benchmark; ConvNeXt-Tiny selected</li>
+        </ul>
+      </div>
+      <div class="phase done">
+        <div class="phase-header"><span class="phase-title">Phase 4: Robustness and generalisation</span><span class="phase-status">Complete</span><span class="phase-notebooks">08 &middot; 09</span></div>
+        <ul class="phase-milestones">
+          <li>Missing-sensor sweeps on validation and test, with significance tests</li>
+          <li>Leave-one-fruit-out generalisation across all six produce types</li>
+        </ul>
+      </div>
+      <div class="phase done">
+        <div class="phase-header"><span class="phase-title">Phase 5: Explainability</span><span class="phase-status">Complete</span><span class="phase-notebooks">10</span></div>
+        <ul class="phase-milestones">
+          <li>Grad-CAM, SHAP and attention-weight analysis</li>
+          <li>Grad-CAM on the test-set misclassifications and correct predictions</li>
+        </ul>
+      </div>
+      <div class="phase done">
+        <div class="phase-header"><span class="phase-title">Phase 6: Settling the CBAM question</span><span class="phase-status">Complete</span></div>
+        <ul class="phase-milestones">
+          <li>A clean no-CBAM model trained from scratch and evaluated on test, twice</li>
+          <li>CBAM kept on consistent direction across both runs</li>
+        </ul>
+      </div>
+      <div class="phase done">
+        <div class="phase-header"><span class="phase-title">Phase 7: Uncertainty quantification</span><span class="phase-status">Complete</span><span class="phase-notebooks">11</span></div>
+        <ul class="phase-milestones">
+          <li>Bootstrap confidence intervals for every headline metric</li>
+          <li>Six-fold retraining cross-validation as an independent check</li>
+          <li>Benjamini&ndash;Hochberg correction across all 29 comparisons</li>
+        </ul>
+      </div>
+      <div class="phase done">
+        <div class="phase-header"><span class="phase-title">Phase 8: Shelf-life regression and capacity</span><span class="phase-status">Complete</span><span class="phase-notebooks">12 &middot; 13 &middot; 14</span></div>
+        <ul class="phase-milestones">
+          <li>Regression weakness traced to tomato's much longer timescale</li>
+          <li>Three target rescalings trained and tested; all failed</li>
+          <li>Embedding size and dropout re-swept; defaults kept</li>
+        </ul>
+      </div>
+      <div class="phase current">
+        <div class="phase-header"><span class="phase-title">Phase 9: Dissemination</span><span class="phase-status">In progress</span></div>
+        <ul class="phase-milestones">
+          <li>Thesis written for Dissertation Phase I (24CS798), November 2026</li>
+          <li>Journal manuscript drafted for Scientific Reports</li>
+          <li>Code repository maintained alongside the notebooks</li>
+          <li>Project website (this site)</li>
+        </ul>
+      </div>
+    </div>
+
+    <footer class="page-footer">
+      <p>School of Computing, Amrita Vishwa Vidyapeetham &middot; Sri Janani S &middot; Guide: Dr. Bagyammal T.</p>
+    </footer>
+  </main>
+</div>
+
+<script src="theme.js"></script>
+<script src="site.js"></script>
+</body>
+</html>
