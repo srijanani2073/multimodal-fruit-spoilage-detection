@@ -1,0 +1,45 @@
+{
+  "seed": 42,
+  "train_ratio": 0.7,
+  "val_ratio": 0.15,
+  "test_ratio": 0.15,
+  "total_sessions": 112,
+  "split_counts": {
+    "train": 73,
+    "val": 21,
+    "test": 18
+  },
+  "per_fruit": {
+    "Banana": {
+      "train": 3,
+      "val": 2,
+      "test": 2
+    },
+    "Carrot": {
+      "train": 6,
+      "val": 2,
+      "test": 1
+    },
+    "Guava": {
+      "train": 6,
+      "val": 2,
+      "test": 2
+    },
+    "Mango": {
+      "train": 4,
+      "val": 2,
+      "test": 2
+    },
+    "Indian_Gooseberry": {
+      "train": 21,
+      "val": 5,
+      "test": 4
+    },
+    "Tomato": {
+      "train": 33,
+      "val": 8,
+      "test": 7
+    }
+  },
+  "note": "Splits are chronological (by actual_date) within each (fruit, label) stratum: the earliest days go to train, the next to val, and the most recent to test, independently per label so both classes are represented in every split. Never regenerate -- use this file as the frozen record."
+}
