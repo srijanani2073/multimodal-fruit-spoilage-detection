@@ -115,16 +115,20 @@ def main():
             slug = f"{fruit.lower()}_{slug_label}"
             rgb = index(base / "sRGB_images", SRGB_RE)
             ir = index(find_ir_folder(base), IR_RE)
-            if not ir and fruit == "Banana" and slug_label == "spoiled":
-                # TR-6 stores the spoiled banana's thermal images under Normal/Banana.
-                dates = {d for d, _ in rgb}
-                ir = {k: v for k, v in index(find_ir_folder(root / "Normal" / "Banana"), IR_RE).items()
-                      if k[0] in dates}
+            if fruit == "Banana" and slug_label == "spoiled":
+                # TR-6 stores most of the spoiled banana's thermal images under Normal/Banana:
+                # fill every (date, session) of the spoiled sRGB days that has no thermal image.
+                for key, shots in index(find_ir_folder(root / "Normal" / "Banana"), IR_RE).items():
+                    if key in rgb and key not in ir:
+                        ir[key] = shots
 
             pair = pick_pair(rgb, ir, args.position, order)
             if pair is None:
                 missing.append(slug)
-                print(f"{slug:<30} no day with both an sRGB and a thermal image")
+                print(f"{slug:<30} no day with both an sRGB and a thermal image "
+                      f"(sRGB on {len({d for d, _ in rgb})} days, thermal on {len({d for d, _ in ir})} days; "
+                      f"sRGB dates {min(rgb)[0] if rgb else '-'}..{max(rgb)[0] if rgb else '-'}, "
+                      f"thermal dates {min(ir)[0] if ir else '-'}..{max(ir)[0] if ir else '-'})")
                 continue
             day, session, p_rgb, p_ir, gap = pair
             save(p_rgb, out / f"{slug}_rgb.jpg")

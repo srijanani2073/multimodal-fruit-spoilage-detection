@@ -1,0 +1,90 @@
+{
+  "position": 0.5,
+  "session": "afternoon",
+  "samples": {
+    "banana_notspoiled": {
+      "date": "20250912",
+      "session": "afternoon",
+      "rgb": "20250912_132114.jpg",
+      "ir": "20250912_133308_29.6C_31.6C.jpg",
+      "gap_minutes": 11.9
+    },
+    "banana_spoiled": {
+      "date": "20250917",
+      "session": "afternoon",
+      "rgb": "20250917_131206.jpg",
+      "ir": "20250917_132144_31.1C_32.5C.jpg",
+      "gap_minutes": 9.6
+    },
+    "carrot_notspoiled": {
+      "date": "20250725",
+      "session": "afternoon",
+      "rgb": "20250725_152113.jpg",
+      "ir": "20250725_150423_25.4C_28.0C.jpg",
+      "gap_minutes": 16.8
+    },
+    "carrot_spoiled": {
+      "date": "20250731",
+      "session": "afternoon",
+      "rgb": "20250731_130846.jpg",
+      "ir": "20250731_132204_28.7C_32.2C.jpg",
+      "gap_minutes": 13.3
+    },
+    "guava_notspoiled": {
+      "date": "20250627",
+      "session": "afternoon",
+      "rgb": "20250627_142738.jpg",
+      "ir": "20250627_142342_26.1C_27.2C.jpg",
+      "gap_minutes": 3.9
+    },
+    "guava_spoiled": {
+      "date": "20250702",
+      "session": "afternoon",
+      "rgb": "20250702_135850.jpg",
+      "ir": "20250702_140112_28.6C_30.2C.jpg",
+      "gap_minutes": 2.4
+    },
+    "indian_gooseberry_notspoiled": {
+      "date": "20250801",
+      "session": "afternoon",
+      "rgb": "20250801_132201.jpg",
+      "ir": "20250801_132616_30.1C_31.4C.jpg",
+      "gap_minutes": 4.2
+    },
+    "indian_gooseberry_spoiled": {
+      "date": "20250830",
+      "session": "afternoon",
+      "rgb": "20250830_145307.jpg",
+      "ir": "20250830_144818_27.4C_28.8C.jpg",
+      "gap_minutes": 4.8
+    },
+    "mango_notspoiled": {
+      "date": "20250923",
+      "session": "afternoon",
+      "rgb": "20250923_133546.jpg",
+      "ir": "20250923_133535_31.3C_32.7C.jpg",
+      "gap_minutes": 0.2
+    },
+    "mango_spoiled": {
+      "date": "20250930",
+      "session": "afternoon",
+      "rgb": "20250930_134352.jpg",
+      "ir": "20250930_133455_30.1C_31.7C.jpg",
+      "gap_minutes": 8.9
+    },
+    "tomato_notspoiled": {
+      "date": "20250814",
+      "session": "afternoon",
+      "rgb": "20250814_134512.jpg",
+      "ir": "20250814_134330_27.0C_28.3C.jpg",
+      "gap_minutes": 1.7
+    },
+    "tomato_spoiled": {
+      "date": "20250930",
+      "session": "afternoon",
+      "rgb": "20250930_134626.jpg",
+      "ir": "20250930_134226_29.0C_30.4C.jpg",
+      "gap_minutes": 4.0
+    }
+  }
+}
